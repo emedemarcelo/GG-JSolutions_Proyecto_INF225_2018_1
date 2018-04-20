@@ -1,4 +1,4 @@
-Proyecto Ingenería de Software 2018-2
+Proyecto Ingenería de Software 2018-1
 
 Marcelo González - 201430028-K
 José Gallardo - 2014300XX-Y
