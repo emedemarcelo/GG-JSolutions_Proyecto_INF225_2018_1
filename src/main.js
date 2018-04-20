@@ -4,13 +4,10 @@ const path = require('path');
 const url = require('url');
 // For 1st deliverable (viability of the project)
 const yahooFinance = require('yahoo-finance');  // For getting API data
-const { ipcMain } = require('electron'); // For sending data through views (create event triggering)
 
 // Keep a global reference of the windows object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win;
-let win2;
-let win3;
 
 function createWindow(){
 	//Create a browser window
@@ -19,43 +16,11 @@ function createWindow(){
 		height: 600
 	});
 
-	win2 = new BrowserWindow({
-		width: 800,
-		height: 600
-	});
-
-	win3 = new BrowserWindow({
-		width: 800,
-		height: 600
-	});
-
-	// And load the index.html of the app
 	win.loadURL(url.format({
-		pathname: path.join(__dirname, 'index.html'),
-		protocol: 'file:',
-		slashes: true
-	}));
-
-	win2.loadURL(url.format({
-		pathname: path.join(__dirname, 'results.html'),
-		protocol: 'file:',
-		slashes: true
-	}));
-
-	win3.loadURL(url.format({
 		pathname: path.join(__dirname, 'display.html'),
 		protocol: 'file:',
 		slashes: true
 	}));
-
-    // Attach event listener to event that requests to update something in the second window
-    // from the first window
-    ipcMain.on('request-update-label-in-second-window', (event, arg) => {
-        // Request to update the label in the renderer process of the second window
-        // We'll send the same data that was sent to the main process
-        // Note: you can obviously send the
-        win2.webContents.send('action-update-label', arg);
-    });
 
 	// Emitted when the window is closed
 	win.on('closed', () => {
@@ -63,8 +28,6 @@ function createWindow(){
 		//in an array if your app supports multi windows. This is the time
 		//when you should delete the corresponding element.
 		win = null;
-		win2 = null;
-		win3 = null;
 	});
 
 	yahooFinance.historical({
