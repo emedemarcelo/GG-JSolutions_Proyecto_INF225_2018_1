@@ -1,4 +1,5 @@
 node_modules
 out
 .eslintcache
-.idea
+.idea/
+.idea/workspace.xml
