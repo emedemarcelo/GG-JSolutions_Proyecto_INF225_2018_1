@@ -14,6 +14,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { mailFolderListItems, otherMailFolderListItems } from './tileData.jsx';
 import Analysis from './Analysis.jsx';
+import Results from './Results.jsx';
 
 import {
   BrowserRouter as Router,
@@ -145,7 +146,7 @@ class MiniDrawer extends React.Component {
         </Drawer>
         <main className={classes.content}>
           <div className={classes.toolbar} />
-          <Typography noWrap>
+          <Typography>
               <Switch>
                 <Route exact path="/" component={Home} />
                 <Route path="/analysis" component={Analysis} />
@@ -161,12 +162,6 @@ class MiniDrawer extends React.Component {
 const Home = () => (
   <div>
     <h2>Home</h2>
-  </div>
-)
-
-const Results = () => (
-  <div>
-    <h2>Results</h2>
   </div>
 )
 
