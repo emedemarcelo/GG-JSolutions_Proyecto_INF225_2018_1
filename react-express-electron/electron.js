@@ -1,14 +1,21 @@
 const electron = require('electron');
-const app = electron.app;
-const BrowserWindow = electron.BrowserWindow;
+//const app = electron.app;
+//const BrowserWindow = electron.BrowserWindow;
+const {app, BrowserWindow, Menu, ipcMain} = require('electron');
 const server = require('./app');
 const path = require('path');
 const url = require('url');
 
+process.env.NODE_ENV = "development";
+
 let mainWindow;
 
 function createWindow () {
-    mainWindow = new BrowserWindow({frame: false, width: 800, height: 700 });
+    mainWindow = new BrowserWindow({
+        //frame: false,
+        width: 800,
+        height: 700 }
+    );
 
     mainWindow.loadURL('http://localhost:5000/');
     // mainWindow.loadURL(url.format({
@@ -25,8 +32,14 @@ function createWindow () {
         // Dereference the window object, usually you would store windows
         // in an array if your app supports multi windows, this is the time
         // when you should delete the corresponding element.
-        mainWindow = null;
+        //mainWindow = null;
+        app.quit();
     });
+
+    // Build menu from template
+    const mainMenu = Menu.buildFromTemplate(mainMenuTemplate);
+
+    Menu.setApplicationMenu(mainMenu);
 }
 
 // This method will be called when Electron has finished
@@ -53,3 +66,54 @@ app.on('activate', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+const mainMenuTemplate = [
+    {
+        label: "File",
+        submenu: [
+            {
+                label: "Subir Archivo",
+                click(){
+                    console.log("Subir archivo!");
+                }
+            },
+            {
+                label: "Borrar Archivo",
+                click(){
+                    console.log("Borrar archivo");
+                }
+            },
+            {
+                label: "Quit",
+                accelerator: process.platform === "darwin" ? "Command+Q" : "Ctrl+Q",
+                click(){
+                    app.quit();
+                }
+            }
+        ]
+    }
+];
+
+// If in a Mac, add empty object to menu (so it displays 'File' instead of 'Electron')
+if (process.platform === "darwin"){
+    mainMenuTemplate.unshift({}); // unshift method add an empty array to the beginning of the array
+}
+
+// Add developer tools if not in production
+if (process.env.NODE_ENV !== "production"){
+    mainMenuTemplate.push({
+        label: "Dev Tools",
+        submenu: [
+            {
+                label: "Developer Tools",
+                accelerator: process.platform === "darwin" ? "Command+I" : "Ctrl+I",
+                click(item, focusedWindow){
+                    focusedWindow.toggleDevTools();
+                }
+            },
+            {
+                role: "reload"
+            }
+        ]
+    })
+};
