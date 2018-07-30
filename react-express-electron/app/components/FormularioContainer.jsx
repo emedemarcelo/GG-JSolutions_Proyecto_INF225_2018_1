@@ -27,35 +27,41 @@ const styles = {
 };
 
 class SimpleCard extends React.Component {
-    
+
+    formData = [];
+
+    retrieveForm = (data) => {
+        this.formData = [];
+        this.formData.push(data);
+    };
+
     render(){
-    const { classes } = this.props;
-    const bull = <span className={classes.bullet}>•</span>;
+        const { classes } = this.props;
+        const bull = <span className={classes.bullet}>•</span>;
 
-    return (
-        <div>
-            <Card className={classes.card}>
-                <CardContent>
-                    <Typography className={classes.title} color="textSecondary">
-                        contekets
-                    </Typography>
-                    <Typography variant="headline" component="h2">
-                        Consulta de datos
-                    </Typography>
-                    <Typography component="p">
-                        <Formulario></Formulario>
-                    </Typography>
-                </CardContent>
-                <CardActions>
-                    <Button size="small" color="secondary" variant="outlined" onClick={() => this.props.myFunc({
-                                dir : "formulario"
-                            })}>Predecir opciones</Button>
-                </CardActions>
-            </Card>
-        </div>
-    );
+        return (
+            <div>
+                <Card className={classes.card}>
+                    <CardContent>
+                        <Typography className={classes.title} color="textSecondary">
+                            contekets
+                        </Typography>
+                        <Typography variant="headline" component="h2">
+                            Consulta de datos
+                        </Typography>
+                        <Typography component="p">
+                            <Formulario retrieveForm={this.retrieveForm}></Formulario>
+                        </Typography>
+                    </CardContent>
+                    <CardActions>
+                        <Button size="small" color="secondary" variant="outlined" onClick={() => {
+                            this.props.myFunc(this.formData.pop())
+                        }}>Predecir opciones</Button>
+                    </CardActions>
+                </Card>
+            </div>
+        );
     }
-
 }
 
 SimpleCard.propTypes = {

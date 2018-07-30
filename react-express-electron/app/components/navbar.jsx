@@ -102,17 +102,24 @@ class MiniDrawer extends React.Component {
     nombre: "card 1"
   }];
 
+  formData = [{}];
+
   addCardData = (data) => { // hacer logica con los GET acá
-    this.cards = this.cards.concat([
-      { id: this.state.n + 1, nombre: "card " + this.state.n + " desde el " + data.dir }
-    ])
+    this.cards = this.cards.concat([{
+        id: this.state.n + 1,
+        nombre: "card " + this.state.n + " desde el " + data.dir
+    }]);
 
     this.setState({
       open: this.state.open,
       n: this.state.n + 1,
-    })
+    });
 
     console.log(this.cards);
+
+    if (data.from_form === true){
+      this.formData.push(data);
+    }
   };
 
   handleDrawerOpen = () => {
@@ -182,7 +189,7 @@ const Home = () => (
   <div>
     <h2>Home</h2>
   </div>
-)
+);
 
 MiniDrawer.propTypes = {
   classes: PropTypes.object.isRequired,

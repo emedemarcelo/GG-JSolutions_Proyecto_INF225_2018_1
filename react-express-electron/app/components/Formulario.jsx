@@ -19,27 +19,6 @@ const styles = theme => ({
   },
 });
 
-/*
-const currencies = [
-  {
-    value: 'USD',
-    label: '$',
-  },
-  {
-    value: 'EUR',
-    label: '€',
-  },
-  {
-    value: 'BTC',
-    label: '฿',
-  },
-  {
-    value: 'JPY',
-    label: '¥',
-  },
-];
-*/
-
 const mercados = [
     {
         value: "USA",
@@ -59,13 +38,14 @@ const mercados = [
 // will be displayed by default in the form
 class TextFields extends React.Component {
   state = {
-    name: 'Cat in the Hat',
-    age: '',
-    multiline: 'Controlled',
-    currency: 'EUR',
-    mercado: 'USA',
-    trayectorias: '1',
-    tasa_riesgo: '0.000'
+      accion: '',
+      mercado: '',
+      fecha_inicio: '',
+      fecha_termino: '',
+      trayectorias: '1',
+      tasa_riesgo: '0.000',
+      dir: "formulario WASD",
+      from_form: true
   };
 
   handleChange = name => event => {
@@ -74,8 +54,11 @@ class TextFields extends React.Component {
     });
   };
 
+
   render() {
     const { classes } = this.props;
+
+    this.props.retrieveForm(this.state);
 
     return (
       <form className={classes.container} noValidate autoComplete="off">
@@ -118,7 +101,7 @@ class TextFields extends React.Component {
             label="Fecha de Inicio"
             type="date"
             className={classes.textField}
-            onChange={this.handleChange('fecha-inicio')}
+            onChange={this.handleChange('fecha_inicio')}
             InputLabelProps={{
                 shrink: true
             }}
@@ -131,7 +114,7 @@ class TextFields extends React.Component {
             label="fecha-termino"
             type="date"
             className={classes.textField}
-            onChange={this.handleChange('fecha-termino')}
+            onChange={this.handleChange('fecha_termino')}
             InputLabelProps={{
                 shrink: true
             }}
@@ -168,7 +151,8 @@ class TextFields extends React.Component {
 }
 
 TextFields.propTypes = {
-  classes: PropTypes.object.isRequired,
+    classes: PropTypes.object.isRequired,
+    retrieveForm: PropTypes.func
 };
 
 export default withStyles(styles)(TextFields);
