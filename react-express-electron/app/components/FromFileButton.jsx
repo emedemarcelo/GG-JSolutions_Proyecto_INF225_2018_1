@@ -24,6 +24,7 @@ class FromFileButton extends React.Component{
 
         reader.onload = function(e) {
             let data;
+            let self = this;
             // Use reader.result
             //alert(reader.result)
             //LO QUE SALE DE DATA PARSER HAY QUE GUARDARLO EN UN ESTADO

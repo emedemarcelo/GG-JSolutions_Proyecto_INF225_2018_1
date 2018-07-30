@@ -16,12 +16,8 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import Divider from '@material-ui/core/Divider';
-
-import C3Chart from 'react-c3js';
-import './css/c3.css';
-
-// Load the charts module
+import { Charts, ChartContainer, ChartRow, YAxis, LineChart } from "react-timeseries-charts";
+import { TimeSeries, TimeRange } from "pondjs";
 
 const styles = theme => ({
   card: {
@@ -52,19 +48,6 @@ const styles = theme => ({
 class CardResults extends React.Component {
   state = { expanded: false };
 
-  data = {
-    columns: [
-      ['data1', 30, 200, 100, 400, 150, 250]
-    ]
-  };
-
-  /*data = {
-    columns: [
-      ['data1', 30, 200, 100, 400, 150, 250],
-      ['data2', 50, 20, 10, 40, 15, 25]
-    ]
-  };*/
-
   handleExpandClick = () => {
     this.setState(state => ({ expanded: !state.expanded }));
   };
@@ -72,12 +55,18 @@ class CardResults extends React.Component {
   render() {
     const { classes } = this.props;
 
-    var k;
+    const availabilityData =  {
+      name: "trafficc",
+      columns: ["time", "value"],
+      points: [
+          [1400425947000, 52],
+          [1400425948000, 18],
+          [1400425949000, 26],
+          [1400425950000, 93],
+      ]
+  };
 
-    for(k=5; k<200; k++){
-      this.data.columns[0] = this.data.columns[0].concat([k*30-Math.pow(-1,k)*10]);
-      //console.log(this.data.columns[0]);
-    }
+    const series1 = new TimeSeries(availabilityData);
 
     return (
       <div>
@@ -96,12 +85,15 @@ class CardResults extends React.Component {
             title={this.props.name}
             subheader="September 14, 2016"
           />
-
           <CardContent>
-            <C3Chart data={this.data} />
-            <Typography component="p">
-              asdasdads
-            </Typography>
+            <ChartContainer timeRange={series1.timerange()} width={800}>
+              <ChartRow height="200">
+                <YAxis id="axis1" label="AUD" min={0} max={100} width="60" type="linear" format="$,.2f" />
+                <Charts>
+                  <LineChart axis="axis1" series={series1} />
+                </Charts>
+              </ChartRow>
+            </ChartContainer>
           </CardContent>
           <CardActions className={classes.actions} disableActionSpacing>
             <IconButton aria-label="Add to favorites">
@@ -151,7 +143,6 @@ class CardResults extends React.Component {
             </CardContent>
           </Collapse>
         </Card>
-        <Divider />
       </div>
     );
   }
