@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
@@ -106,8 +107,8 @@ class MiniDrawer extends React.Component {
 
   addCardData = (data) => { // hacer logica con los GET acá
     this.cards = this.cards.concat([{
-        id: this.state.n + 1,
-        nombre: "card " + this.state.n + " desde el " + data.dir
+      id: this.state.n + 1,
+      nombre: "card " + this.state.n + " desde el " + data.dir
     }]);
 
     this.setState({
@@ -117,9 +118,19 @@ class MiniDrawer extends React.Component {
 
     console.log(this.cards);
 
-    if (data.from_form === true){
+    if (data.from_form === true) {
       this.formData.push(data);
     }
+
+    console.log(data);
+
+    axios.get('http://localhost:5000/api/test',{
+      params : data
+    }).then(res => {
+      const data = res.data;
+      console.log(data.message);
+    })
+
   };
 
   handleDrawerOpen = () => {
@@ -176,7 +187,7 @@ class MiniDrawer extends React.Component {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/analysis" component={() => <Analysis myFunc={this.addCardData} />} />
-              <Route path="/results" component={() => <Results cards= {this.cards} />} />
+              <Route path="/results" component={() => <Results cards={this.cards} />} />
             </Switch>
           </Typography>
         </main>
