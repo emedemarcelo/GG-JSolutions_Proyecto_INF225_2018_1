@@ -16,6 +16,12 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import Divider from '@material-ui/core/Divider';
+
+import C3Chart from 'react-c3js';
+import './css/c3.css';
+
+// Load the charts module
 
 const styles = theme => ({
   card: {
@@ -46,12 +52,32 @@ const styles = theme => ({
 class CardResults extends React.Component {
   state = { expanded: false };
 
+  data = {
+    columns: [
+      ['data1', 30, 200, 100, 400, 150, 250]
+    ]
+  };
+
+  /*data = {
+    columns: [
+      ['data1', 30, 200, 100, 400, 150, 250],
+      ['data2', 50, 20, 10, 40, 15, 25]
+    ]
+  };*/
+
   handleExpandClick = () => {
     this.setState(state => ({ expanded: !state.expanded }));
   };
 
   render() {
     const { classes } = this.props;
+
+    var k;
+
+    for(k=5; k<200; k++){
+      this.data.columns[0] = this.data.columns[0].concat([k*30-Math.pow(-1,k)*10]);
+      //console.log(this.data.columns[0]);
+    }
 
     return (
       <div>
@@ -70,15 +96,11 @@ class CardResults extends React.Component {
             title={this.props.name}
             subheader="September 14, 2016"
           />
-          <CardMedia
-            className={classes.media}
-            image="/static/images/cards/paella.jpg"
-            title="Contemplative Reptile"
-          />
+
           <CardContent>
+            <C3Chart data={this.data} />
             <Typography component="p">
-              This impressive paella is a perfect party dish and a fun meal to cook together with
-              your guests. Add 1 cup of frozen peas along with the mussels, if you like.
+              asdasdads
             </Typography>
           </CardContent>
           <CardActions className={classes.actions} disableActionSpacing>
@@ -129,6 +151,7 @@ class CardResults extends React.Component {
             </CardContent>
           </Collapse>
         </Card>
+        <Divider />
       </div>
     );
   }

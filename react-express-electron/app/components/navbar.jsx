@@ -13,7 +13,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import { mailFolderListItems, otherMailFolderListItems } from './tileData.jsx';
+import {MailFolderListItems, otherMailFolderListItems } from './tileData.jsx';
 import Analysis from './Analysis.jsx';
 import Results from './Results.jsx';
 
@@ -96,6 +96,7 @@ class MiniDrawer extends React.Component {
   state = {
     open: false,
     n: 1,
+    charged : 0,
   };
 
   cards = [{
@@ -111,11 +112,6 @@ class MiniDrawer extends React.Component {
       nombre: "card " + this.state.n + " desde el " + data.dir
     }]);
 
-    this.setState({
-      open: this.state.open,
-      n: this.state.n + 1,
-    });
-
     console.log(this.cards);
 
     if (data.from_form === true) {
@@ -124,13 +120,22 @@ class MiniDrawer extends React.Component {
 
     console.log(data);
 
-    axios.get('http://localhost:5000/api/test',{
-      params : data
-    }).then(res => {
-      const data = res.data;
-      console.log(data.message);
-    })
+    var promesa = new Promise(function(resolve, reject){
+      axios.get('http://localhost:5000/api/test',{
+        params : data
+      }).then(res => {
+        const data = res.data;
+        console.log(data.message);
+        return resolve("resuelto");
+      });
+    });
 
+    Promise.resolve(promesa).then(
+      this.setState({
+        open: this.state.open,
+        n: this.state.n + 1,
+      })
+    );
   };
 
   handleDrawerOpen = () => {
@@ -177,7 +182,7 @@ class MiniDrawer extends React.Component {
             </IconButton>
           </div>
           <Divider />
-          <List>{mailFolderListItems}</List>
+          <List>{MailFolderListItems}</List>
           <Divider />
           <List>{otherMailFolderListItems}</List>
         </Drawer>
