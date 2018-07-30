@@ -19,7 +19,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 const styles = theme => ({
   card: {
-    maxWidth: '50%',
+    maxWidth: '100%',
   },
   media: {
     height: 0,
@@ -67,7 +67,7 @@ class CardResults extends React.Component {
                 <MoreVertIcon />
               </IconButton>
             }
-            title="Shrimp and Chorizo Paella"
+            title={this.props.name}
             subheader="September 14, 2016"
           />
           <CardMedia

@@ -38,10 +38,12 @@ class SimpleBottomNavigation extends React.Component {
                             className={classes.root}
                         >
                             <BottomNavigationAction label="Desde Internet" icon={<NetworkIcon />} />
-                            <BottomNavigationAction label="Desde su equipo" icon={<PCIcon />} />
+                            <BottomNavigationAction label="Desde su equipo" icon={<PCIcon />} onClick={() => this.props.myFunc({
+                                dir : "equipo"
+                            })}/>
                         </BottomNavigation>
 
-                        <FormularioC></FormularioC>
+                        <FormularioC ></FormularioC>
                     </center>
                 </div>
             );
@@ -50,6 +52,7 @@ class SimpleBottomNavigation extends React.Component {
 
 SimpleBottomNavigation.propTypes = {
     classes: PropTypes.object.isRequired,
+    myFunc: PropTypes.func
 };
 
 export default withStyles(styles)(SimpleBottomNavigation);

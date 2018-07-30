@@ -3,13 +3,13 @@ import CardResults from './CardResults.jsx';
 
 
 class Results extends React.Component {
-    state = {
-        test : 1,
-    }
-
     render(){
+        const cards = this.props.cards;
+
         return(
-                <CardResults />
+                cards.map((item) => (
+                    <CardResults key={item.id} name={item.nombre}/>
+                ))
         );
     }
 }

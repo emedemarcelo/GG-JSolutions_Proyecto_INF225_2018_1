@@ -94,6 +94,26 @@ const styles = theme => ({
 class MiniDrawer extends React.Component {
   state = {
     open: false,
+    n: 1,
+  };
+
+  cards = [{
+    id: 1,
+    nombre: "card 1"
+  }];
+
+  addCardData = (data) => {
+    
+    this.cards = this.cards.concat([
+      { id: this.state.n + 1, nombre: "card " + this.state.n + " desde el " + data.dir }
+    ])
+
+    this.setState({
+      open: this.state.open,
+      n: this.state.n + 1,
+    })
+
+    console.log(this.cards);
   };
 
   handleDrawerOpen = () => {
@@ -147,11 +167,11 @@ class MiniDrawer extends React.Component {
         <main className={classes.content}>
           <div className={classes.toolbar} />
           <Typography>
-              <Switch>
-                <Route exact path="/" component={Home} />
-                <Route path="/analysis" component={Analysis} />
-                <Route path="/results" component={Results} />
-              </Switch>      
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/analysis" component={() => <Analysis myFunc={this.addCardData} />} />
+              <Route path="/results" component={() => <Results cards= {this.cards} />} />
+            </Switch>
           </Typography>
         </main>
       </div>
