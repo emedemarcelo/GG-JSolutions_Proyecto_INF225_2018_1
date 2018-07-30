@@ -19,6 +19,7 @@ const styles = theme => ({
   },
 });
 
+/*
 const currencies = [
   {
     value: 'USD',
@@ -37,13 +38,34 @@ const currencies = [
     label: '¥',
   },
 ];
+*/
 
+const mercados = [
+    {
+        value: "USA",
+        label: "NASDAQ"
+    },
+    {
+        value: "USA2",
+        label: "NYSE"
+    },
+    {
+        value: "USA3",
+        label: "AMEX"
+    }
+];
+
+// In 'state', we put the "value" field of each variable so it
+// will be displayed by default in the form
 class TextFields extends React.Component {
   state = {
     name: 'Cat in the Hat',
     age: '',
     multiline: 'Controlled',
     currency: 'EUR',
+    mercado: 'USA',
+    trayectorias: '1',
+    tasa_riesgo: '0.000'
   };
 
   handleChange = name => event => {
@@ -58,168 +80,87 @@ class TextFields extends React.Component {
     return (
       <form className={classes.container} noValidate autoComplete="off">
         <TextField
-          id="name"
-          label="Name"
-          className={classes.textField}
-          value={this.state.name}
-          onChange={this.handleChange('name')}
-          margin="normal"
+            required
+            id="accion"
+            label="Acción a analizar"
+            placeholder="Acción"
+            className={classes.textField}
+            value={this.state.accion}
+            onChange={this.handleChange('accion')}
+            helperText="Ej: MSFT, MDB, QCOM, ..."
+            margin="normal"
         />
         <TextField
-          id="uncontrolled"
-          label="Uncontrolled"
-          defaultValue="foo"
-          className={classes.textField}
-          margin="normal"
-        />
-        <TextField
-          required
-          id="required"
-          label="Required"
-          defaultValue="Hello World"
-          className={classes.textField}
-          margin="normal"
-        />
-        <TextField
-          error
-          id="error"
-          label="Error"
-          defaultValue="Hello World"
-          className={classes.textField}
-          margin="normal"
-        />
-        <TextField
-          id="password-input"
-          label="Password"
-          className={classes.textField}
-          type="password"
-          autoComplete="current-password"
-          margin="normal"
-        />
-        <TextField
-          id="read-only-input"
-          label="Read Only"
-          defaultValue="Hello World"
-          className={classes.textField}
-          margin="normal"
-          InputProps={{
-            readOnly: true,
-          }}
-        />
-        <TextField
-          id="multiline-flexible"
-          label="Multiline"
-          multiline
-          rowsMax="4"
-          value={this.state.multiline}
-          onChange={this.handleChange('multiline')}
-          className={classes.textField}
-          margin="normal"
-        />
-        <TextField
-          id="multiline-static"
-          label="Multiline"
-          multiline
-          rows="4"
-          defaultValue="Default Value"
-          className={classes.textField}
-          margin="normal"
-        />
-        <TextField
-          id="helperText"
-          label="Helper text"
-          defaultValue="Default Value"
-          className={classes.textField}
-          helperText="Some important text"
-          margin="normal"
-        />
-        <TextField
-          id="with-placeholder"
-          label="With placeholder"
-          placeholder="Placeholder"
-          className={classes.textField}
-          margin="normal"
-        />
-        <TextField
-          id="textarea"
-          label="With placeholder multiline"
-          placeholder="Placeholder"
-          multiline
-          className={classes.textField}
-          margin="normal"
-        />
-        <TextField
-          id="number"
-          label="Number"
-          value={this.state.age}
-          onChange={this.handleChange('age')}
-          type="number"
-          className={classes.textField}
-          InputLabelProps={{
-            shrink: true,
-          }}
-          margin="normal"
-        />
-        <TextField
-          id="search"
-          label="Search field"
-          type="search"
-          className={classes.textField}
-          margin="normal"
-        />
-        <TextField
-          id="select-currency"
-          select
-          label="Select"
-          className={classes.textField}
-          value={this.state.currency}
-          onChange={this.handleChange('currency')}
-          SelectProps={{
-            MenuProps: {
-              className: classes.menu,
-            },
-          }}
-          helperText="Please select your currency"
-          margin="normal"
-        >
-          {currencies.map(option => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
+            required
+            id="mercado"
+            select
+            label="Mercado"
+            className={classes.textField}
+            value={this.state.mercado}
+            onChange={this.handleChange('mercado')}
+            SelectProps={{
+                MenuProps: {
+                    className: classes.menu
+                }
+            }}
+            helperText="Por favor, ingrese mercado a cotizar"
+            margin="normal"
+            >
+                {mercados.map(option => (
+                    <MenuItem key={option.value} value={option.value}>
+                        {option.label}
+                    </MenuItem>
+                ))}
         </TextField>
         <TextField
-          id="select-currency-native"
-          select
-          label="Native select"
-          className={classes.textField}
-          value={this.state.currency}
-          onChange={this.handleChange('currency')}
-          SelectProps={{
-            native: true,
-            MenuProps: {
-              className: classes.menu,
-            },
-          }}
-          helperText="Please select your currency"
-          margin="normal"
-        >
-          {currencies.map(option => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </TextField>
+            required
+            id="fecha-inicio"
+            label="Fecha de Inicio"
+            type="date"
+            className={classes.textField}
+            onChange={this.handleChange('fecha-inicio')}
+            InputLabelProps={{
+                shrink: true
+            }}
+            helperText="Ingrese fecha de inicio de simulación"
+            margin="normal"
+        />
         <TextField
-          id="full-width"
-          label="Label"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          placeholder="Placeholder"
-          helperText="Full width!"
-          fullWidth
-          margin="normal"
+            required
+            id="fecha-termino"
+            label="fecha-termino"
+            type="date"
+            className={classes.textField}
+            onChange={this.handleChange('fecha-termino')}
+            InputLabelProps={{
+                shrink: true
+            }}
+            helperText="Ingrese fecha de término de simulación"
+            margin="normal"
+        />
+        <TextField
+            required
+            id="trayectorias"
+            label="Trayectorias"
+            value={this.state.trayectorias}
+            onChange={this.handleChange('trayectorias')}
+            type="number"
+            className={classes.textField}
+            InputLabelProps={{
+                shrink: true
+            }}
+            helperText="Ingrese N° de trayectorias a simular"
+            margin="normal"
+        />
+        <TextField
+            required
+            id="tasa-riesgo"
+            label="Tasa de Riesgo"
+            value={this.state.tasa_riesgo}
+            onChange={this.handleChange('tasa_riesgo')}
+            className={classes.textField}
+            helperText="Ingrese tasa de riesgo (%)"
+            margin="normal"
         />
       </form>
     );

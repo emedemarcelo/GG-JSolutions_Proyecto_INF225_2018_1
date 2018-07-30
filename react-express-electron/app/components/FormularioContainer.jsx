@@ -10,7 +10,7 @@ import Formulario from './Formulario.jsx';
 
 const styles = {
     card: {
-        minWidth: 275,
+        minWidth: 275
     },
     bullet: {
         display: 'inline-block',
@@ -36,10 +36,10 @@ function SimpleCard(props) {
                 <CardContent>
                     <Typography className={classes.title} color="textSecondary">
                         contekets
-          </Typography>
+                    </Typography>
                     <Typography variant="headline" component="h2">
                         Consulta de datos
-          </Typography>
+                    </Typography>
                     <Typography component="p">
                         <Formulario></Formulario>
                     </Typography>
