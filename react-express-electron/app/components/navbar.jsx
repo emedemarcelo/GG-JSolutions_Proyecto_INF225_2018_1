@@ -102,8 +102,7 @@ class MiniDrawer extends React.Component {
     nombre: "card 1"
   }];
 
-  addCardData = (data) => {
-    
+  addCardData = (data) => { // hacer logica con los GET acá
     this.cards = this.cards.concat([
       { id: this.state.n + 1, nombre: "card " + this.state.n + " desde el " + data.dir }
     ])

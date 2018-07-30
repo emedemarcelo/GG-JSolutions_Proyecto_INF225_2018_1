@@ -26,8 +26,10 @@ const styles = {
     },
 };
 
-function SimpleCard(props) {
-    const { classes } = props;
+class SimpleCard extends React.Component {
+    
+    render(){
+    const { classes } = this.props;
     const bull = <span className={classes.bullet}>•</span>;
 
     return (
@@ -45,15 +47,20 @@ function SimpleCard(props) {
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <Button size="small" color="secondary" variant="outlined">Predecir opciones</Button>
+                    <Button size="small" color="secondary" variant="outlined" onClick={() => this.props.myFunc({
+                                dir : "formulario"
+                            })}>Predecir opciones</Button>
                 </CardActions>
             </Card>
         </div>
     );
+    }
+
 }
 
 SimpleCard.propTypes = {
     classes: PropTypes.object.isRequired,
+    myFunc: PropTypes.func,
 };
 
 export default withStyles(styles)(SimpleCard);

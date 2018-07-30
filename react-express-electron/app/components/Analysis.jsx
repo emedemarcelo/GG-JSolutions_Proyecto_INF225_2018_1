@@ -43,7 +43,7 @@ class SimpleBottomNavigation extends React.Component {
                             })}/>
                         </BottomNavigation>
 
-                        <FormularioC ></FormularioC>
+                        <FormularioC myFunc={this.props.myFunc}></FormularioC>
                     </center>
                 </div>
             );
