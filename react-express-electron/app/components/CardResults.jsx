@@ -143,7 +143,6 @@ class CardResults extends React.Component {
             </CardContent>
           </Collapse>
         </Card>
-        <Divider />
       </div>
     );
   }
