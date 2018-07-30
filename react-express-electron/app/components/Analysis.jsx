@@ -52,7 +52,7 @@ class SimpleBottomNavigation extends React.Component {
 
 SimpleBottomNavigation.propTypes = {
     classes: PropTypes.object.isRequired,
-    myFunc: PropTypes.func
+    myFunc: PropTypes.func,
 };
 
 export default withStyles(styles)(SimpleBottomNavigation);

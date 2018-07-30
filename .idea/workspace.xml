@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/react-express-electron/app/components/FormularioContainer.jsx" line="47" />
+    <bookmark url="file://$PROJECT_DIR$/react-express-electron/app/components/FormularioContainer.jsx" line="56" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e80d68ae-2090-4f38-8e22-9891a77f1d48" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react-express-electron/app/components/Analysis.jsx" afterPath="$PROJECT_DIR$/react-express-electron/app/components/Analysis.jsx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react-express-electron/app/components/Formulario.jsx" afterPath="$PROJECT_DIR$/react-express-electron/app/components/Formulario.jsx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react-express-electron/app/components/FormularioContainer.jsx" afterPath="$PROJECT_DIR$/react-express-electron/app/components/FormularioContainer.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react-express-electron/app/components/navbar.jsx" afterPath="$PROJECT_DIR$/react-express-electron/app/components/navbar.jsx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react-express-electron/public/app.bundle.js" afterPath="$PROJECT_DIR$/react-express-electron/public/app.bundle.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -34,16 +36,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="amex.csv" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/react-express-electron/app/helpers/amex.csv">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3726">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="index.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/react-express-electron/app/index.jsx">
           <provider selected="true" editor-type-id="text-editor">
@@ -56,14 +48,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="navbar.jsx" pinned="false" current-in-tab="false">
+      <file leaf-file-name="navbar.jsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/react-express-electron/app/components/navbar.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2718">
-              <caret line="151" column="59" lean-forward="false" selection-start-line="151" selection-start-column="59" selection-end-line="151" selection-end-column="59" />
+            <state relative-caret-position="-718">
+              <caret line="122" column="4" lean-forward="false" selection-start-line="122" selection-start-column="4" selection-end-line="122" selection-end-column="4" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
-                <marker date="1532904534751" expanded="true" signature="4692:4773" ph="{&quot;classes&quot;: PropTypes.object.isRequired...}" />
               </folding>
             </state>
           </provider>
@@ -72,8 +63,8 @@
       <file leaf-file-name="Analysis.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/react-express-electron/app/components/Analysis.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="524">
-              <caret line="50" column="22" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="22" />
+            <state relative-caret-position="222">
+              <caret line="40" column="68" lean-forward="false" selection-start-line="40" selection-start-column="68" selection-end-line="40" selection-end-column="68" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -84,8 +75,8 @@
       <file leaf-file-name="FormularioContainer.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/react-express-electron/app/components/FormularioContainer.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="42" column="45" lean-forward="false" selection-start-line="42" selection-start-column="45" selection-end-line="42" selection-end-column="45" />
+            <state relative-caret-position="380">
+              <caret line="68" column="27" lean-forward="false" selection-start-line="68" selection-start-column="27" selection-end-line="68" selection-end-column="27" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -93,24 +84,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Formulario.jsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Formulario.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/react-express-electron/app/components/Formulario.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="254">
-              <caret line="163" column="10" lean-forward="true" selection-start-line="163" selection-start-column="10" selection-end-line="163" selection-end-column="10" />
+            <state relative-caret-position="308">
+              <caret line="47" column="21" lean-forward="false" selection-start-line="47" selection-start-column="21" selection-end-line="47" selection-end-column="21" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="nasdaq.csv" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/react-express-electron/app/helpers/nasdaq.csv">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="2581" column="2" lean-forward="true" selection-start-line="2581" selection-start-column="1" selection-end-line="2581" selection-end-column="5" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -120,6 +101,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>set</find>
+      <find>myFunc</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -133,8 +115,10 @@
         <option value="$PROJECT_DIR$/src/display.html" />
         <option value="$PROJECT_DIR$/react-express-electron/electron.js" />
         <option value="$PROJECT_DIR$/react-express-electron/package.json" />
-        <option value="$PROJECT_DIR$/react-express-electron/app/components/Formulario.jsx" />
         <option value="$PROJECT_DIR$/react-express-electron/app/components/FormularioContainer.jsx" />
+        <option value="$PROJECT_DIR$/react-express-electron/app/components/Analysis.jsx" />
+        <option value="$PROJECT_DIR$/react-express-electron/app/components/Formulario.jsx" />
+        <option value="$PROJECT_DIR$/react-express-electron/app/components/navbar.jsx" />
       </list>
     </option>
   </component>
@@ -285,12 +269,12 @@
       <workItem from="1524264059684" duration="861000" />
       <workItem from="1532814122234" duration="117000" />
       <workItem from="1532827599591" duration="1094000" />
-      <workItem from="1532900528042" duration="10671000" />
+      <workItem from="1532900528042" duration="22530000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13773000" />
+    <option name="totallyTimeSpent" value="25632000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1366" height="741" extended-state="6" />
@@ -299,6 +283,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24068554" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329582" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -311,7 +296,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -551,14 +535,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/react-express-electron/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-324">
-          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/react-express-electron/public/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -607,13 +583,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/react-express-electron/app/views/home.js">
+    <entry file="file://$PROJECT_DIR$/react-express-electron/app/helpers/nasdaq.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="2581" column="2" lean-forward="false" selection-start-line="2581" selection-start-column="1" selection-end-line="2581" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react-express-electron/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
+          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -635,49 +617,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/react-express-electron/app/components/navbar.jsx">
+    <entry file="file://$PROJECT_DIR$/react-express-electron/app/views/home.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2718">
-          <caret line="151" column="59" lean-forward="false" selection-start-line="151" selection-start-column="59" selection-end-line="151" selection-end-column="59" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
-            <marker date="1532904534751" expanded="true" signature="4692:4773" ph="{&quot;classes&quot;: PropTypes.object.isRequired...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react-express-electron/app/components/Analysis.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="524">
-          <caret line="50" column="22" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react-express-electron/app/helpers/nasdaq.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="2581" column="2" lean-forward="true" selection-start-line="2581" selection-start-column="1" selection-end-line="2581" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react-express-electron/app/components/FormularioContainer.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="42" column="45" lean-forward="false" selection-start-line="42" selection-start-column="45" selection-end-line="42" selection-end-column="45" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#0#41#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/react-express-electron/app/components/Formulario.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="163" column="10" lean-forward="true" selection-start-line="163" selection-start-column="10" selection-end-line="163" selection-end-column="10" />
+        <state relative-caret-position="308">
+          <caret line="47" column="21" lean-forward="false" selection-start-line="47" selection-start-column="21" selection-end-line="47" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react-express-electron/app/components/FormularioContainer.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="68" column="27" lean-forward="false" selection-start-line="68" selection-start-column="27" selection-end-line="68" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react-express-electron/app/components/Analysis.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="40" column="68" lean-forward="false" selection-start-line="40" selection-start-column="68" selection-end-line="40" selection-end-column="68" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react-express-electron/app/components/navbar.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-718">
+          <caret line="122" column="4" lean-forward="false" selection-start-line="122" selection-start-column="4" selection-end-line="122" selection-end-column="4" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>

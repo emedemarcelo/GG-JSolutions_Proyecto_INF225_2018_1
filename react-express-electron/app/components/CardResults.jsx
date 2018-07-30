@@ -48,7 +48,6 @@ const styles = theme => ({
 class CardResults extends React.Component {
   state = { expanded: false };
 
-
   handleExpandClick = () => {
     this.setState(state => ({ expanded: !state.expanded }));
   };
@@ -144,6 +143,7 @@ class CardResults extends React.Component {
             </CardContent>
           </Collapse>
         </Card>
+        <Divider />
       </div>
     );
   }

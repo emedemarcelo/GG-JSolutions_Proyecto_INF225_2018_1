@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
@@ -12,7 +13,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import { mailFolderListItems, otherMailFolderListItems } from './tileData.jsx';
+import {MailFolderListItems, otherMailFolderListItems } from './tileData.jsx';
 import Analysis from './Analysis.jsx';
 import Results from './Results.jsx';
 
@@ -96,6 +97,7 @@ class MiniDrawer extends React.Component {
   state = {
     open: false,
     n: 1,
+    charged : 0,
   };
 
   cards = [{
@@ -103,17 +105,38 @@ class MiniDrawer extends React.Component {
     nombre: "card 1"
   }];
 
-  addCardData = (data) => { // hacer logica con los GET acá
-    this.cards = this.cards.concat([
-      { id: this.state.n + 1, nombre: "card " + this.state.n + " desde el " + data.dir }
-    ])
+  formData = [{}];
 
-    this.setState({
-      open: this.state.open,
-      n: this.state.n + 1,
-    })
+  addCardData = (data) => { // hacer logica con los GET acá
+    this.cards = this.cards.concat([{
+      id: this.state.n + 1,
+      nombre: "card " + this.state.n + " desde el " + data.dir
+    }]);
 
     console.log(this.cards);
+
+    if (data.from_form === true) {
+      this.formData.push(data);
+    }
+
+    console.log(data);
+
+    var promesa = new Promise(function(resolve, reject){
+      axios.get('http://localhost:5000/api/test',{
+        params : data
+      }).then(res => {
+        const data = res.data;
+        console.log(data.message);
+        return resolve("resuelto");
+      });
+    });
+
+    Promise.resolve(promesa).then(
+      this.setState({
+        open: this.state.open,
+        n: this.state.n + 1,
+      })
+    );
   };
 
   handleDrawerOpen = () => {
@@ -160,7 +183,7 @@ class MiniDrawer extends React.Component {
             </IconButton>
           </div>
           <Divider />
-          <List>{mailFolderListItems}</List>
+          <List>{MailFolderListItems}</List>
           <Divider />
           <List>{otherMailFolderListItems}</List>
         </Drawer>
@@ -170,7 +193,7 @@ class MiniDrawer extends React.Component {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/analysis" component={() => <Analysis myFunc={this.addCardData} />} />
-              <Route path="/results" component={() => <Results cards= {this.cards} />} />
+              <Route path="/results" component={() => <Results cards={this.cards} />} />
             </Switch>
           </Typography>
         </main>
@@ -183,7 +206,7 @@ const Home = () => (
   <div>
     <h2>Home</h2>
   </div>
-)
+);
 
 MiniDrawer.propTypes = {
   classes: PropTypes.object.isRequired,
