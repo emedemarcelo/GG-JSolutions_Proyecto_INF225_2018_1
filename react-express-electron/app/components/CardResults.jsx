@@ -16,6 +16,8 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { Charts, ChartContainer, ChartRow, YAxis, LineChart } from "react-timeseries-charts";
+import { TimeSeries, TimeRange } from "pondjs";
 
 const styles = theme => ({
   card: {
@@ -46,12 +48,26 @@ const styles = theme => ({
 class CardResults extends React.Component {
   state = { expanded: false };
 
+
   handleExpandClick = () => {
     this.setState(state => ({ expanded: !state.expanded }));
   };
 
   render() {
     const { classes } = this.props;
+
+    const availabilityData =  {
+      name: "trafficc",
+      columns: ["time", "value"],
+      points: [
+          [1400425947000, 52],
+          [1400425948000, 18],
+          [1400425949000, 26],
+          [1400425950000, 93],
+      ]
+  };
+
+    const series1 = new TimeSeries(availabilityData);
 
     return (
       <div>
@@ -70,16 +86,15 @@ class CardResults extends React.Component {
             title={this.props.name}
             subheader="September 14, 2016"
           />
-          <CardMedia
-            className={classes.media}
-            image="/static/images/cards/paella.jpg"
-            title="Contemplative Reptile"
-          />
           <CardContent>
-            <Typography component="p">
-              This impressive paella is a perfect party dish and a fun meal to cook together with
-              your guests. Add 1 cup of frozen peas along with the mussels, if you like.
-            </Typography>
+            <ChartContainer timeRange={series1.timerange()} width={800}>
+              <ChartRow height="200">
+                <YAxis id="axis1" label="AUD" min={0} max={100} width="60" type="linear" format="$,.2f" />
+                <Charts>
+                  <LineChart axis="axis1" series={series1} />
+                </Charts>
+              </ChartRow>
+            </ChartContainer>
           </CardContent>
           <CardActions className={classes.actions} disableActionSpacing>
             <IconButton aria-label="Add to favorites">
