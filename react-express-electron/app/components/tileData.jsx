@@ -6,6 +6,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
+import HomeIcon from '@material-ui/icons/Home';
 import StarIcon from '@material-ui/icons/Star';
 import SendIcon from '@material-ui/icons/Send';
 import MailIcon from '@material-ui/icons/Mail';
@@ -38,7 +39,7 @@ export const MailFolderListItems = (
   <div>
   <ListItem component={Link} to="/" button>
     <ListItemIcon>
-        <InboxIcon />
+        <HomeIcon />
     </ListItemIcon>
     <ListItemText primary="Página Principal" />
   </ListItem>
@@ -46,7 +47,7 @@ export const MailFolderListItems = (
     <ListItemIcon>
       <StarIcon />
     </ListItemIcon>
-    <ListItemText primary="Analizar datos" />
+    <ListItemText primary="Ingresar Datos" />
   </ListItem>
   <ListItem component={Link} to="/results" button>
     <ListItemIcon>
@@ -63,7 +64,7 @@ export const otherMailFolderListItems = (
       <ListItemIcon>
         <MailIcon />
       </ListItemIcon>
-      <ListItemText primary="podria servir" />
+      <ListItemText primary="Saber Más" />
     </ListItem>
   </div>
 );

@@ -102,15 +102,18 @@ class MiniDrawer extends React.Component {
 
   cards = [{
     id: 1,
-    nombre: "card 1"
+    nombre: "Tarjeta #1"
   }];
 
   formData = [{}];
 
+  yfData = [];
+
   addCardData = (data) => { // hacer logica con los GET acá
     this.cards = this.cards.concat([{
       id: this.state.n + 1,
-      nombre: "card " + this.state.n + " desde el " + data.dir
+      nombre: "Tarjeta N° " + this.state.n + " desde " + data.dir,
+      numericalData: []
     }]);
 
     console.log(this.cards);
@@ -121,7 +124,8 @@ class MiniDrawer extends React.Component {
 
     console.log(data);
 
-    var promesa = new Promise(function(resolve, reject){
+
+    let promesa = new Promise(function(resolve, reject){
       axios.get('http://localhost:5000/api/test',{
         params : data
       }).then(res => {
@@ -137,6 +141,29 @@ class MiniDrawer extends React.Component {
         n: this.state.n + 1,
       })
     );
+
+    let promise_yf = new Promise(function(resolve, reject){
+      axios.get('http://localhost:5000/api/yf', {
+        params: data
+      }).then(res => {
+        const data = res.data;
+        console.log("Received data from backend: ");
+        console.log(data);
+        return resolve(data); // You can pass something to the Promise.resolve function if you want
+      })
+    });
+
+    Promise.resolve(promise_yf).then( (data) => {
+            this.yfData.push(data);
+            console.log("promise_yf resolved!");
+            console.log("Printing yfData: ");
+            console.log(this.yfData.pop());
+            this.setState({
+                open: this.state.open,
+                n: this.state.n + 1
+            });
+    });
+
   };
 
   handleDrawerOpen = () => {
@@ -166,7 +193,7 @@ class MiniDrawer extends React.Component {
               <MenuIcon />
             </IconButton>
             <Typography variant="title" color="inherit" noWrap>
-              Mini variant drawer
+              Valoración de Opciones
             </Typography>
           </Toolbar>
         </AppBar>
@@ -203,9 +230,11 @@ class MiniDrawer extends React.Component {
 }
 
 const Home = () => (
-  <div>
-    <h2>Home</h2>
-  </div>
+    <div>
+      <h2>Valoración de Opciones</h2>
+      <p>Bienvenido al programa de Valoración de Opciones!</p>
+      <p>Por favor, ingrese la información en Formulario o suba un archivo .csv para iniciar la simulación</p>
+    </div>
 );
 
 MiniDrawer.propTypes = {

@@ -79,21 +79,23 @@ const App = withRouter(({ classes }, asd) => (
       </Typography>
     </main>
   </div>
-))
+));
 
 
 const Home = () => (
   <div>
-    <h2>Home</h2>
+    <h2>Valoración de Opciones</h2>
+    <p>Bienvenido al programa de Valoración de Opciones!</p>
+    <p>Por favor, ingrese la información en Formulario o suba un archivo .csv para iniciar la simulación</p>
   </div>
-)
+);
 
 
 const Results = () => (
   <div>
-    <h2>Results</h2>
+    <h2>Resultados</h2>
   </div>
-)
+);
 
 App.propTypes = {
   classes: PropTypes.object.isRequired,

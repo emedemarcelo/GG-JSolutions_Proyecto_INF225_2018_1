@@ -44,10 +44,10 @@ class SimpleCard extends React.Component {
                 <Card className={classes.card}>
                     <CardContent>
                         <Typography className={classes.title} color="textSecondary">
-                            contekets
+                            Análisis de Información
                         </Typography>
                         <Typography variant="headline" component="h2">
-                            Consulta de datos
+                            Consulta de Datos
                         </Typography>
                         <Typography component="p">
                             <Formulario retrieveForm={this.retrieveForm}></Formulario>
@@ -56,7 +56,7 @@ class SimpleCard extends React.Component {
                     <CardActions>
                         <Button size="small" color="secondary" variant="outlined" onClick={() => {
                             this.props.myFunc(this.formData.pop())
-                        }}>Predecir opciones</Button>
+                        }}>Predecir Opciones</Button>
                     </CardActions>
                 </Card>
             </div>

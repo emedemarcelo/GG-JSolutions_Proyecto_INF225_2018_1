@@ -44,7 +44,7 @@ class TextFields extends React.Component {
       fecha_termino: '',
       trayectorias: '1',
       tasa_riesgo: '0.000',
-      dir: "formulario WASD",
+      dir: "formulario",
       from_form: true
   };
 

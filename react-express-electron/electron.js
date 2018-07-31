@@ -69,26 +69,106 @@ app.on('activate', function () {
 
 const mainMenuTemplate = [
     {
-        label: "File",
+        label: "Archivo",
         submenu: [
+            {
+                label: "Ingresar Formulario",
+                click(){
+                    console.log("Ingresar Formulario");
+                }
+            },
             {
                 label: "Subir Archivo",
                 click(){
-                    console.log("Subir archivo!");
+                    console.log("Subir Archivo");
                 }
             },
             {
-                label: "Borrar Archivo",
-                click(){
-                    console.log("Borrar archivo");
-                }
-            },
-            {
-                label: "Quit",
+                label: "Salir",
                 accelerator: process.platform === "darwin" ? "Command+Q" : "Ctrl+Q",
                 click(){
                     app.quit();
                 }
+            }
+        ]
+    },
+    {
+        label: 'Editar',
+        submenu: [
+            {
+                role: 'undo',
+                label: 'Deshacer'
+            },
+            {
+                role: 'redo',
+                label: 'Rehacer'
+            },
+            {
+                type: 'separator'
+            },
+            {
+                role: 'cut',
+                label: 'Cortar'
+            },
+            {
+                role: 'copy',
+                label: 'Copiar'
+            },
+            {
+                role: 'paste',
+                label: 'Pegar'
+            },
+            {
+                role: 'selectall',
+                label: 'Seleccionar Todo'
+            }
+        ]
+    },
+    {
+        label: 'Ver',
+        submenu: [
+            {
+                role: 'resetzoom',
+                label: 'Restaurar Zoom'
+            },
+            {
+                role: 'zoomin',
+                label: 'Acercar'
+            },
+            {
+                role: 'zoomout',
+                label: 'Alejar'
+             },
+            {
+                type: 'separator'
+            },
+            {
+                role: 'togglefullscreen',
+                label: 'Pantalla Completa'
+            }
+        ]
+    },
+    {
+        role: 'window',
+        label: 'Ventana',
+        submenu: [
+            {
+                role: 'minimize',
+                label: 'Minimizar'
+            },
+            {
+                role: 'close',
+                label: 'Cerrar'
+            }
+        ]
+    },
+    {
+        role: 'help',
+        label: 'Ayuda',
+        submenu: [
+            {
+                label: 'Saber Más',
+                click () { require('electron').shell.openExternal('https://electronjs.org') }
             }
         ]
     }
