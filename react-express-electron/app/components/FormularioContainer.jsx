@@ -26,7 +26,7 @@ const styles = {
     },
 };
 
-class SimpleCard extends React.Component {
+class FormularioContainer extends React.Component {
 
     formData = [];
 
@@ -64,9 +64,9 @@ class SimpleCard extends React.Component {
     }
 }
 
-SimpleCard.propTypes = {
+FormularioContainer.propTypes = {
     classes: PropTypes.object.isRequired,
     myFunc: PropTypes.func,
 };
 
-export default withStyles(styles)(SimpleCard);
+export default withStyles(styles)(FormularioContainer);

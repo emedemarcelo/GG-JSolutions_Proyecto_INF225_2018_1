@@ -13,10 +13,9 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import {MailFolderListItems, otherMailFolderListItems } from './tileData.jsx';
+import { MailFolderListItems, otherMailFolderListItems } from './NavbarItems.jsx';
 import Analysis from './Analysis.jsx';
 import Results from './Results.jsx';
-
 
 import {
   BrowserRouter as Router,
@@ -93,11 +92,11 @@ const styles = theme => ({
   },
 });
 
-class MiniDrawer extends React.Component {
+class App extends React.Component {
   state = {
     open: false,
     n: 1,
-    charged : 0,
+    charged: 0,
   };
 
   cards = [{
@@ -125,9 +124,9 @@ class MiniDrawer extends React.Component {
     console.log(data);
 
 
-    let promesa = new Promise(function(resolve, reject){
-      axios.get('http://localhost:5000/api/test',{
-        params : data
+    let promesa = new Promise(function (resolve, reject) {
+      axios.get('http://localhost:5000/api/test', {
+        params: data
       }).then(res => {
         const data = res.data;
         console.log(data.message);
@@ -142,7 +141,7 @@ class MiniDrawer extends React.Component {
       })
     );
 
-    let promise_yf = new Promise(function(resolve, reject){
+    let promise_yf = new Promise(function (resolve, reject) {
       axios.get('http://localhost:5000/api/yf', {
         params: data
       }).then(res => {
@@ -153,15 +152,15 @@ class MiniDrawer extends React.Component {
       })
     });
 
-    Promise.resolve(promise_yf).then( (data) => {
-            this.yfData.push(data);
-            console.log("promise_yf resolved!");
-            console.log("Printing yfData: ");
-            console.log(this.yfData.pop());
-            this.setState({
-                open: this.state.open,
-                n: this.state.n + 1
-            });
+    Promise.resolve(promise_yf).then((data) => {
+      this.yfData.push(data);
+      console.log("promise_yf resolved!");
+      console.log("Printing yfData: ");
+      console.log(this.yfData.pop());
+      this.setState({
+        open: this.state.open,
+        n: this.state.n + 1
+      });
     });
 
   };
@@ -174,8 +173,16 @@ class MiniDrawer extends React.Component {
     this.setState({ open: false });
   };
 
+
+
   render() {
     const { classes, theme } = this.props;
+
+    const FadingRoute = ({ component: Component, ...rest }) => (
+      <Route {...rest} render={props => (
+        <Component {...props} />
+      )} />
+    )
 
     return (
       <div className={classes.root}>
@@ -217,11 +224,9 @@ class MiniDrawer extends React.Component {
         <main className={classes.content}>
           <div className={classes.toolbar} />
           <Typography>
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route path="/analysis" component={() => <Analysis myFunc={this.addCardData} />} />
-              <Route path="/results" component={() => <Results cards={this.cards} />} />
-            </Switch>
+            <FadingRoute path="/analysis" component={() => <Analysis myFunc={this.addCardData} />} />
+            <Route exact path="/" render={() => <Home />} />
+            <Route path="/results" render={() => <Results cards={this.cards} />} />
           </Typography>
         </main>
       </div>
@@ -230,16 +235,16 @@ class MiniDrawer extends React.Component {
 }
 
 const Home = () => (
-    <div>
-      <h2>Valoración de Opciones</h2>
-      <p>Bienvenido al programa de Valoración de Opciones!</p>
-      <p>Por favor, ingrese la información en Formulario o suba un archivo .csv para iniciar la simulación</p>
-    </div>
+  <div>
+    <h2>Valoración de Opciones</h2>
+    <p>Bienvenido al programa de Valoración de Opciones!</p>
+    <p>Por favor, ingrese la información en Formulario o suba un archivo .csv para iniciar la simulación</p>
+  </div>
 );
 
-MiniDrawer.propTypes = {
+App.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(MiniDrawer);
+export default withStyles(styles, { withTheme: true })(App);
