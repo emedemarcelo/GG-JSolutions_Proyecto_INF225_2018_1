@@ -6,7 +6,9 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 
 const styles = theme => ({
     container: {
@@ -20,6 +22,10 @@ const styles = theme => ({
     },
     menu: {
         width: 200,
+    },
+    close: {
+        width: theme.spacing.unit * 4,
+        height: theme.spacing.unit * 4,
     },
 });
 
@@ -49,8 +55,11 @@ class Formulario extends React.Component {
         trayectorias: '1',
         tasa_riesgo: '0.000',
         dir: "formulario",
-        from_form: true
+        options: [],
+        from_form: true,
+        timestamp: '',
     };
+    
 
     handleChange = name => event => {
         this.setState({
@@ -58,9 +67,12 @@ class Formulario extends React.Component {
         });
     };
 
+
+
     render() {
         const { classes } = this.props;
         this.props.retrieveForm(this.state);
+        let d = new Date();
         return (
             <form className={classes.container} noValidate autoComplete="off">
                 <TextField
@@ -148,7 +160,8 @@ class Formulario extends React.Component {
                 />
 
                 <Button size="small" color="secondary" variant="outlined" onClick={() => {
-                    this.props.add(this.state);
+                    this.props.add(this.state,d.toString());
+                    this.handleClick;
                 }}>Predecir opciones con Redux</Button>
             </form>
         );
@@ -164,9 +177,11 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        add: (data_in) =>
+        add: (data_in, time_in) =>
             dispatch({
                 type: 'ADD',
+                data: data_in,
+                timestamp: time_in 
             })
     }
 }

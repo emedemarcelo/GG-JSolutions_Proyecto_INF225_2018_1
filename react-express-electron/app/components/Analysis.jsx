@@ -7,6 +7,7 @@ import NetworkIcon from '@material-ui/icons/Language';
 import PCIcon from '@material-ui/icons/Input';
 import './AnimatedSwitchDemo.css';
 import FormularioC from './FormularioContainer.jsx';
+import Slide from '@material-ui/core/Slide';
 
 
 const styles = {
@@ -29,7 +30,8 @@ class Analysis extends React.Component {
         const { value } = this.state;
 
         return (
-                <div>
+            <div>
+                <Slide direction="up" in={true} mountOnEnter unmountOnExit>
                     <center>
                         <BottomNavigation
                             value={value}
@@ -39,14 +41,15 @@ class Analysis extends React.Component {
                         >
                             <BottomNavigationAction label="Desde Internet" icon={<NetworkIcon />} />
                             <BottomNavigationAction label="Desde su equipo" icon={<PCIcon />} onClick={() => this.props.myFunc({
-                                dir : "equipo"
-                            })}/>
+                                dir: "equipo"
+                            })} />
                         </BottomNavigation>
 
                         <FormularioC myFunc={this.props.myFunc}></FormularioC>
                     </center>
-                </div>
-            );
+                </Slide>
+            </div>
+        );
     }
 }
 

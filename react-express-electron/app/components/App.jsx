@@ -3,6 +3,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -16,6 +17,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { MailFolderListItems, otherMailFolderListItems } from './NavbarItems.jsx';
 import Analysis from './Analysis.jsx';
 import Results from './Results.jsx';
+import Home from './Home.jsx';
 
 import {
   BrowserRouter as Router,
@@ -184,67 +186,73 @@ class App extends React.Component {
       )} />
     )
 
+    const AppColor = createMuiTheme({
+      overrides: {
+        MuiAppBar: { // Name of the component ⚛️ / style sheet
+          colorSecondary: {
+            backgroundColor: '#571995',
+          },
+        },
+      },
+    });
+
     return (
       <div className={classes.root}>
-        <AppBar
-          position="absolute"
-          className={classNames(classes.appBar, this.state.open && classes.appBarShift)}
-        >
-          <Toolbar disableGutters={!this.state.open}>
-            <IconButton
-              color="inherit"
-              aria-label="Open drawer"
-              onClick={this.handleDrawerOpen}
-              className={classNames(classes.menuButton, this.state.open && classes.hide)}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="title" color="inherit" noWrap>
-              Valoración de Opciones
+        <MuiThemeProvider theme={AppColor}>
+          <AppBar
+            position="absolute"
+            className={classNames(classes.appBar, this.state.open && classes.appBarShift)}
+            color="secondary"
+          >
+            <Toolbar disableGutters={!this.state.open}>
+              <IconButton
+                color="inherit"
+                aria-label="Open drawer"
+                onClick={this.handleDrawerOpen}
+                className={classNames(classes.menuButton, this.state.open && classes.hide)}
+              >
+                <MenuIcon />
+              </IconButton>
+              <Typography variant="title" color="inherit" noWrap>
+                Valoración de Opciones
             </Typography>
-          </Toolbar>
-        </AppBar>
-        <Drawer
-          variant="permanent"
-          classes={{
-            paper: classNames(classes.drawerPaper, !this.state.open && classes.drawerPaperClose),
-          }}
-          open={this.state.open}
-        >
-          <div className={classes.toolbar}>
-            <IconButton onClick={this.handleDrawerClose}>
-              {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-            </IconButton>
+            </Toolbar>
+          </AppBar>
+          <Drawer
+            variant="permanent"
+            classes={{
+              paper: classNames(classes.drawerPaper, !this.state.open && classes.drawerPaperClose),
+            }}
+            open={this.state.open}
+          >
+            <div className={classes.toolbar}>
+              <IconButton onClick={this.handleDrawerClose}>
+                {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+              </IconButton>
+            </div>
+            <Divider />
+            <List>{MailFolderListItems}</List>
+            <Divider />
+            <List>{otherMailFolderListItems}</List>
+          </Drawer>
+          <main className={classes.content}>
+            <div className={classes.toolbar} />
+            <Typography>
+              <FadingRoute path="/analysis" component={() => <Analysis myFunc={this.addCardData} />} />
+              <Route exact path="/" render={() => <Home />} />
+              <Route path="/results" render={() => <Results cards={this.cards} />} />
+            </Typography>
+          </main>
+          </MuiThemeProvider>
           </div>
-          <Divider />
-          <List>{MailFolderListItems}</List>
-          <Divider />
-          <List>{otherMailFolderListItems}</List>
-        </Drawer>
-        <main className={classes.content}>
-          <div className={classes.toolbar} />
-          <Typography>
-            <FadingRoute path="/analysis" component={() => <Analysis myFunc={this.addCardData} />} />
-            <Route exact path="/" render={() => <Home />} />
-            <Route path="/results" render={() => <Results cards={this.cards} />} />
-          </Typography>
-        </main>
-      </div>
-    );
-  }
-}
-
-const Home = () => (
-  <div>
-    <h2>Valoración de Opciones</h2>
-    <p>Bienvenido al programa de Valoración de Opciones!</p>
-    <p>Por favor, ingrese la información en Formulario o suba un archivo .csv para iniciar la simulación</p>
-  </div>
-);
-
+        );
+      }
+    }
+    
+    
 App.propTypes = {
-  classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles, { withTheme: true })(App);
+          classes: PropTypes.object.isRequired,
+        theme: PropTypes.object.isRequired,
+      };
+      
+export default withStyles(styles, {withTheme: true })(App);

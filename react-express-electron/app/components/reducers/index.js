@@ -1,9 +1,9 @@
-export default (state = 0, action) => {
-    switch (action.type) {
-      case 'ADD':
-        return state + 1
-      default:
-        return state
-    }
+export default (state = [], action) => {
+  switch (action.type) {
+    case 'ADD':
+      action.data.timestamp = action.timestamp;
+      return state.concat(action.data)
+    default:
+      return state
   }
-  
+}

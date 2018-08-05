@@ -16,17 +16,19 @@ import {
   Link
 } from 'react-router-dom'
 
+
+
 class AppFrame extends React.Component {
   render() {
     const customHistory = createBrowserHistory()
 
-    return(
-    <Provider store={store}>
-      <Router history={customHistory}>
-        <App />
-      </Router>
-    </Provider>
-  );
-}
+    return (
+      <Provider store={store}>
+        <Router history={customHistory}>
+          <App />
+        </Router>
+      </Provider>
+    );
+  }
 }
 ReactDOM.render(<AppFrame />, document.getElementById("app"));
