@@ -19,6 +19,9 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
+import { Route, Redirect } from 'react-router'
+import Graphs from './Graphs.jsx'
+import { withRouter } from 'react-router-dom';
 
 const styles = theme => ({
   root: {
@@ -60,6 +63,13 @@ class ResultsItem extends React.Component {
     dense: true,
     secondary: false,
   };
+
+  displayGraph = (e) => {
+    this.props.history.push({
+      pathname: "/graph",
+      state: { hola : "asdjkasdjkasdj"}
+    });
+  }
 
   getGraph = () => {
 
@@ -115,7 +125,7 @@ class ResultsItem extends React.Component {
           <Divider />
           <ExpansionPanelActions>
             <Button size="small">exportar</Button>
-            <Button size="small" color="primary">
+            <Button size="small" color="primary" onClick={this.displayGraph}>
               Ver gráfico
           </Button>
           </ExpansionPanelActions>
@@ -129,4 +139,4 @@ ResultsItem.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ResultsItem);
+export default withStyles(styles)(withRouter(ResultsItem));

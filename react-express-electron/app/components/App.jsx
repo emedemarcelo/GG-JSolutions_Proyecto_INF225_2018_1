@@ -18,6 +18,7 @@ import { MailFolderListItems, otherMailFolderListItems } from './NavbarItems.jsx
 import Analysis from './Analysis.jsx';
 import Results from './Results.jsx';
 import Home from './Home.jsx';
+import Graphss from './Graphs.jsx'
 
 import {
   BrowserRouter as Router,
@@ -26,6 +27,7 @@ import {
   withRouter,
   Link
 } from 'react-router-dom'
+import Graphs from './Graphs.jsx';
 
 const drawerWidth = 240;
 
@@ -61,7 +63,7 @@ const styles = theme => ({
     display: 'none',
   },
   drawerPaper: {
-    position: 'relative',
+    position: 'fixed',
     whiteSpace: 'nowrap',
     width: drawerWidth,
     transition: theme.transitions.create('width', {
@@ -71,6 +73,7 @@ const styles = theme => ({
   },
   drawerPaperClose: {
     overflowX: 'hidden',
+    position: 'fixed',
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -85,6 +88,7 @@ const styles = theme => ({
     alignItems: 'center',
     justifyContent: 'flex-end',
     padding: '0 8px',
+    position: 'relative',
     ...theme.mixins.toolbar,
   },
   content: {
@@ -199,8 +203,8 @@ class App extends React.Component {
     return (
       <div className={classes.root}>
         <MuiThemeProvider theme={AppColor}>
-          <AppBar
-            position="absolute"
+          <AppBar 
+            position="fixed"
             className={classNames(classes.appBar, this.state.open && classes.appBarShift)}
             color="secondary"
           >
@@ -236,10 +240,11 @@ class App extends React.Component {
             <List>{otherMailFolderListItems}</List>
           </Drawer>
           <main className={classes.content}>
-            <div className={classes.toolbar} />
+            <div className={classes.toolbar}/>
             <Typography>
               <FadingRoute path="/analysis" component={() => <Analysis myFunc={this.addCardData} />} />
               <Route exact path="/" render={() => <Home />} />
+              <Route path="/graph" render={() => <Graphs />} />
               <Route path="/results" render={() => <Results cards={this.cards} />} />
             </Typography>
           </main>
