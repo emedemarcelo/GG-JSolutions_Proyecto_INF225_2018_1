@@ -7,6 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Formulario from './Formulario.jsx';
+import FormularioLocal from './FormularioLocal.jsx';
 
 const styles = {
     card: {
@@ -50,7 +51,7 @@ class FormularioContainer extends React.Component {
                             Consulta de Datos
                         </Typography>
                         <Typography component="p">
-                            <Formulario retrieveForm={this.retrieveForm}></Formulario>
+                            <FormularioLocal retrieveForm={this.retrieveForm}></FormularioLocal>
                         </Typography>
                     </CardContent>
                     <CardActions>

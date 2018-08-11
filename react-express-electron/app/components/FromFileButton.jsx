@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-import DataParser from './DataParser.jsx';
+//import DataParser from './DataParser.jsx';
 import ReactFileReader from 'react-file-reader';
 
 
