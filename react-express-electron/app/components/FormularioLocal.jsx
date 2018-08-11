@@ -46,7 +46,7 @@ const mercados = [
 
 // In 'state', we put the "value" field of each variable so it
 // will be displayed by default in the form
-class Formulario extends React.Component {
+class FormularioLocal extends React.Component {
     state = {
         accion: '',
         mercado: '',
@@ -73,6 +73,8 @@ class Formulario extends React.Component {
         const { classes } = this.props;
         let d = new Date();
         return (
+            <div>
+                Formulario Local
             <form className={classes.container} noValidate autoComplete="off">
                 <TextField
                     required
@@ -107,62 +109,13 @@ class Formulario extends React.Component {
                         </MenuItem>
                     ))}
                 </TextField>
-                <TextField
-                    required
-                    id="fecha-inicio"
-                    label="Fecha de Inicio"
-                    type="date"
-                    className={classes.textField}
-                    onChange={this.handleChange('fecha_inicio')}
-                    InputLabelProps={{
-                        shrink: true
-                    }}
-                    helperText="Ingrese fecha de inicio de simulación"
-                    margin="normal"
-                />
-                <TextField
-                    required
-                    id="fecha-termino"
-                    label="fecha-termino"
-                    type="date"
-                    className={classes.textField}
-                    onChange={this.handleChange('fecha_termino')}
-                    InputLabelProps={{
-                        shrink: true
-                    }}
-                    helperText="Ingrese fecha de término de simulación"
-                    margin="normal"
-                />
-                <TextField
-                    required
-                    id="trayectorias"
-                    label="Trayectorias"
-                    value={this.state.trayectorias}
-                    onChange={this.handleChange('trayectorias')}
-                    type="number"
-                    className={classes.textField}
-                    InputLabelProps={{
-                        shrink: true
-                    }}
-                    helperText="Ingrese N° de trayectorias a simular"
-                    margin="normal"
-                />
-                <TextField
-                    required
-                    id="tasa-riesgo"
-                    label="Tasa de Riesgo"
-                    value={this.state.tasa_riesgo}
-                    onChange={this.handleChange('tasa_riesgo')}
-                    className={classes.textField}
-                    helperText="Ingrese tasa de riesgo (%)"
-                    margin="normal"
-                />
 
                 <Button size="small" color="secondary" variant="outlined" onClick={() => {
                     this.props.add(this.state,d.toString());
                     this.handleClick;
                 }}>Predecir opciones con Redux</Button>
             </form>
+            </div>
         );
     }
 }
@@ -185,9 +138,9 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-Formulario.propTypes = {
+FormularioLocal.propTypes = {
     classes: PropTypes.object.isRequired,
     retrieveForm: PropTypes.func
 };
 
-export default compose(withStyles(styles), connect(mapStateToProps, mapDispatchToProps))(Formulario);
+export default compose(withStyles(styles), connect(mapStateToProps, mapDispatchToProps))(FormularioLocal);

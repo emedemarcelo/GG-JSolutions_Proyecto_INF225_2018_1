@@ -37,7 +37,6 @@ class FormularioContainer extends React.Component {
 
     render(){
         const { classes } = this.props;
-        const bull = <span className={classes.bullet}>•</span>;
 
         return (
             <div>
