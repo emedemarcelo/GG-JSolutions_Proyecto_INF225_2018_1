@@ -63,7 +63,7 @@ const styles = theme => ({
     display: 'none',
   },
   drawerPaper: {
-    position: 'fixed',
+    position: 'relative',
     whiteSpace: 'nowrap',
     width: drawerWidth,
     transition: theme.transitions.create('width', {
@@ -73,7 +73,6 @@ const styles = theme => ({
   },
   drawerPaperClose: {
     overflowX: 'hidden',
-    position: 'fixed',
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -88,7 +87,6 @@ const styles = theme => ({
     alignItems: 'center',
     justifyContent: 'flex-end',
     padding: '0 8px',
-    position: 'relative',
     ...theme.mixins.toolbar,
   },
   content: {
@@ -203,8 +201,8 @@ class App extends React.Component {
     return (
       <div className={classes.root}>
         <MuiThemeProvider theme={AppColor}>
-          <AppBar 
-            position="fixed"
+          <AppBar
+            position="absolute"
             className={classNames(classes.appBar, this.state.open && classes.appBarShift)}
             color="secondary"
           >
@@ -217,7 +215,7 @@ class App extends React.Component {
               >
                 <MenuIcon />
               </IconButton>
-              <Typography variant="title" color="inherit" noWrap>
+              <Typography variant="title" color="inherit">
                 Valoración de Opciones
             </Typography>
             </Toolbar>
@@ -240,7 +238,7 @@ class App extends React.Component {
             <List>{otherMailFolderListItems}</List>
           </Drawer>
           <main className={classes.content}>
-            <div className={classes.toolbar}/>
+            <div className={classes.toolbar} />
             <Typography>
               <FadingRoute path="/analysis" component={() => <Analysis myFunc={this.addCardData} />} />
               <Route exact path="/" render={() => <Home />} />
@@ -248,16 +246,16 @@ class App extends React.Component {
               <Route path="/results" render={() => <Results cards={this.cards} />} />
             </Typography>
           </main>
-          </MuiThemeProvider>
-          </div>
-        );
-      }
-    }
-    
-    
+        </MuiThemeProvider>
+      </div>
+    );
+  }
+}
+
+
 App.propTypes = {
-          classes: PropTypes.object.isRequired,
-        theme: PropTypes.object.isRequired,
-      };
-      
-export default withStyles(styles, {withTheme: true })(App);
+  classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles, { withTheme: true })(App);
