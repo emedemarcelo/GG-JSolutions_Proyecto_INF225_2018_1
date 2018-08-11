@@ -42,7 +42,7 @@ router.get('/yf', function(req, res){
         tasa_riesgo   = req.query.tasa_riesgo;
 
     yahooFinance.historical({
-        symbol: pre_accion + accion,
+        symbol: accion,
         from: fecha_inicio,
         to: fecha_termino
     }, function(err, quotes){

@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -59,7 +60,10 @@ class Formulario extends React.Component {
         from_form: true,
         timestamp: '',
     };
-    
+
+    handleClick = (state) => {
+        this.callYF(state);
+    };
 
     handleChange = name => event => {
         this.setState({
@@ -67,9 +71,19 @@ class Formulario extends React.Component {
         });
     };
 
-
+    callYF = function(state){
+        axios.get('http://localhost:5000/api/yf', {
+            params: state
+        }).then(res => {
+            let data = res.data;
+            this.state.options.push(data);
+            console.log("THIS IS DSA OPTIONS");
+            console.log(this.state.options);
+        })
+    };
 
     render() {
+        //console.log(this.props.value);
         const { classes } = this.props;
         this.props.retrieveForm(this.state);
         let d = new Date();
@@ -160,20 +174,19 @@ class Formulario extends React.Component {
                 />
 
                 <Button size="small" color="secondary" variant="outlined" onClick={() => {
-                    this.props.add(this.state,d.toString());
-                    this.handleClick;
+                    this.props.add(this.state, d.toString());
+                    this.handleClick(this.state);
                 }}>Predecir opciones con Redux</Button>
             </form>
         );
     }
 }
 
-
 const mapStateToProps = state => {
     return {
         value: state
     }
-}
+};
 
 const mapDispatchToProps = dispatch => {
     return {
@@ -184,7 +197,7 @@ const mapDispatchToProps = dispatch => {
                 timestamp: time_in 
             })
     }
-}
+};
 
 Formulario.propTypes = {
     classes: PropTypes.object.isRequired,
