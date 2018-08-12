@@ -87,14 +87,11 @@ class Analysis extends React.Component {
                                 Consulta de Datos
                     </Typography>
                             <Typography component="p">
+                            <Slide direction="up" in={true} mountOnEnter unmountOnExit>
                                 { renderValue == 0 ? <Formulario />:<FormularioLocal />}
+                                </Slide>
                             </Typography>
                         </CardContent>
-                        <CardActions>
-                            <Button size="small" color="secondary" variant="outlined" onClick={() => {
-                                this.props.myFunc(this.formData.pop())
-                            }}>Predecir Opciones</Button>
-                        </CardActions>
                     </Card>
                 </center>
             </div>

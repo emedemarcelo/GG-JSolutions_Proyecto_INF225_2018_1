@@ -171,7 +171,6 @@ class Formulario extends React.Component {
                     helperText="Ingrese tasa de riesgo (%)"
                     margin="normal"
                 />
-
                 <Button size="small" color="secondary" variant="outlined" onClick={() => {
                     this.props.add(this.state, d.toString());
                     this.handleClick(this.state);
