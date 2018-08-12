@@ -99,7 +99,6 @@ class FormularioLocal extends React.Component {
 
     render() {
         const { classes } = this.props;
-        this.props.retrieveForm(this.state);
         let d = new Date();
         console.log(this.state.fileJSON);
         return (<div>
