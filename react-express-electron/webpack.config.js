@@ -38,5 +38,5 @@ module.exports = {
             { from: './app/assets', to: 'assets' }
         ])
     ],
-    devtool: 'eval'
+    devtool: 'eval',
 };

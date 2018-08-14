@@ -73,19 +73,24 @@ class Formulario extends React.Component {
 
     callYF = function(state){
         axios.get('http://localhost:5000/api/yf', {
-            params: state
+            params: state,
+            'timeout' : 10000
         }).then(res => {
             let data = res.data;
-            this.state.options.push(data);
+            let d = new Date();
+            //this.state.options.push(data); aquí hay problemas
+            //this.setState({...this.state, options: data});
+            this.props.add({...this.state, options: data}, d.toString());
             console.log("THIS IS DSA OPTIONS");
-            console.log(this.state.options);
+        }).catch(function (error) {
+            console.log(error)
         })
     };
 
     render() {
-        //console.log(this.props.value);
+        console.log(this.props.value);
         const { classes } = this.props;
-        let d = new Date();
+        //let d = new Date();
         return (
             <form className={classes.container} noValidate autoComplete="off">
                 <TextField
@@ -172,7 +177,7 @@ class Formulario extends React.Component {
                     margin="normal"
                 />
                 <Button size="small" color="secondary" variant="outlined" onClick={() => {
-                    this.props.add(this.state, d.toString());
+                    //this.props.add(this.state, d.toString());
                     this.handleClick(this.state);
                 }}>Predecir opciones con Redux</Button>
             </form>
@@ -192,7 +197,7 @@ const mapDispatchToProps = dispatch => {
             dispatch({
                 type: 'ADD',
                 data: data_in,
-                timestamp: time_in 
+                timestamp: time_in
             })
     }
 };

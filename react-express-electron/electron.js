@@ -14,7 +14,9 @@ function createWindow () {
     mainWindow = new BrowserWindow({
         //frame: false,
         width: 800,
-        height: 700 }
+        height: 700,
+        //webPreferences: {webSecurity: false}
+    }
     );
 
     mainWindow.loadURL('http://localhost:5000/');
