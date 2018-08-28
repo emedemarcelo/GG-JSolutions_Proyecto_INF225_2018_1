@@ -74,25 +74,10 @@ class FormularioLocal extends React.Component {
         let aux = files[0];
         let CSV_data = [];
         Papa.parse(files[0], {
-            complete: function(results) {
-                //console.log(results);
-                CSV_data=results.data;
+            complete: (results) =>{
+                this.setState({fileJSON: results.data})
             }
         });
-        this.setState({
-            accion: this.state.accion,
-            mercado: this.state.mercado,
-            fecha_inicio: this.state.fecha_inicio,
-            fecha_termino: this.state.fecha_termino,
-            trayectorias: this.state.trayectorias,
-            tasa_riesgo: this.state.tasa_riesgo,
-            dir: this.state.dir,
-            options: this.state.options,
-            from_form: this.state.from_form,
-            timestamp: this.state.timestamp,
-            fileJSON: CSV_data
-        });
-        
 
         //console.log(aux.path);
     }
