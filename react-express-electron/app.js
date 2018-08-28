@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const axios = require('axios');
 const app = express();
 const cors = require('cors');
+const btoa = require('btoa');
 
 // For API routing
 const router = express.Router(); // Get an instance of the express router
@@ -32,7 +33,7 @@ router.get('/', function (req, res) {
 
 app.get('/*', function (req, res) {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
-  });
+});
 
 // 'api/test'
 router.get('/analysis', (req, res) => {
@@ -66,18 +67,51 @@ router.get('/yf', function (req, res) {
         symbol: accion,
         from: fecha_inicio,
         to: fecha_termino
-    }, function (err, quotes) {
-        axios.post('http://localhost:8000/analysis', {
-            n_trayectorias: trayectorias,
-            riskRate: tasa_riesgo,
-            values: JSON.stringify(quotes),
-        }).then(res => {
-            let data = res.data;
+    }, (err, quotes) => {
+
+        axios({
+            method: 'post',
+            url: 'http://localhost:8000/analysis',
+            responseType: 'arraybuffer',
+            data: {
+                n_trayectorias: trayectorias,
+                riskRate: tasa_riesgo,
+                values: JSON.stringify(quotes),
+            }
+        },).then((response) => {
+            let data = Buffer.from(response.data, 'binary').toString('base64');
             console.log(data);
+            res.send(data);
         }).catch(function (error) {
             console.error('ERROR! ' + error.message)
         })
-        res.json(quotes);
+
+        /*
+         axios.post('http://localhost:8000/analysis', {
+            n_trayectorias: trayectorias,
+            riskRate: tasa_riesgo,
+            values: JSON.stringify(quotes),
+        }).then(response => {
+            let data = Buffer.from(response.data, 'binary').toString('base64');
+            console.log(data);
+            res.send(data);
+            //res.send('data:image/jpeg;base64,'+ btoa(data));
+        }).catch(function (error) {
+            console.error('ERROR! ' + error.message)
+        })*/
+
+        /*
+        axios.get('http://localhost:8000/littlepng', {
+            responseType: 'arraybuffer'
+          }).then((response) => {
+            let data = Buffer.from(response.data, 'binary').toString('base64');
+            console.log(data);
+            res.send(data);
+        }).catch(function (error) {
+            console.error('ERROR! ' + error.message)
+        })
+        */
+
     });
 });
 

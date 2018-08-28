@@ -70,7 +70,7 @@ class Graphs extends React.Component {
 
     render() {
         const { classes, theme } = this.props;
-
+        console.log(this.props.location.state.opciones);
         return (
             <div>
                 <MuiThemeProvider theme={themeButton}>
@@ -112,7 +112,7 @@ class Graphs extends React.Component {
                             index={this.state.value}
                             onChangeIndex={this.handleChangeIndex}
                         >
-                            <TabContainer dir={theme.direction}>{this.props.location.state.hola}</TabContainer>
+                            <TabContainer dir={theme.direction}><img src={'data:image/png;base64,' + this.props.location.state.opciones} /></TabContainer>
                             <TabContainer dir={theme.direction}>Item Two</TabContainer>
                             <TabContainer dir={theme.direction}>Item Three</TabContainer>
                         </SwipeableViews>

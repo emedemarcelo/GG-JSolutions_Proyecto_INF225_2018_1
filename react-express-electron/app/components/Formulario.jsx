@@ -10,6 +10,7 @@ import { compose } from 'redux';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const styles = theme => ({
     container: {
@@ -28,6 +29,9 @@ const styles = theme => ({
         width: theme.spacing.unit * 4,
         height: theme.spacing.unit * 4,
     },
+    progress: {
+        margin: theme.spacing.unit * 2,
+      },
 });
 
 const mercados = [
@@ -59,9 +63,12 @@ class Formulario extends React.Component {
         options: [],
         from_form: true,
         timestamp: '',
+        open: false,
+        charged: true,
     };
 
     handleClick = (state) => {
+        this.setState({ open: true, charged: false});
         this.callYF(state);
     };
 
@@ -71,17 +78,29 @@ class Formulario extends React.Component {
         });
     };
 
-    callYF = function(state){
+    handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+        this.setState({ open: false , charged: true});
+      };
+
+
+    callYF = (state) => {
         axios.get('http://localhost:5000/api/yf', {
             params: state,
-            'timeout' : 10000
+            'timeout': 10000
         }).then(res => {
             let data = res.data;
             let d = new Date();
             //this.state.options.push(data); aquí hay problemas
             //this.setState({...this.state, options: data});
-            this.props.add({...this.state, options: data}, d.toString());
+            this.props.add({ ...this.state, options: data }, d.toString());
             console.log("THIS IS DSA OPTIONS");
+            this.setState({charged: true})
+            setTimeout(() => {
+                this.handleClose();
+            },3000)
         }).catch(function (error) {
             console.log(error)
         })
@@ -180,6 +199,24 @@ class Formulario extends React.Component {
                     //this.props.add(this.state, d.toString());
                     this.handleClick(this.state);
                 }}>Predecir opciones con Redux</Button>
+                <Snackbar
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'left',
+                    }}
+                    open={this.state.open}
+                    onClose={this.handleClose}
+                    ContentProps={{
+                        'aria-describedby': 'message-id',
+                    }}
+                    message={
+                        (this.state.charged == false)? <div>
+                        <CircularProgress className={classes.progress} color="secondary" size={30}/>
+                        <span id="message-id">Calculando opciones... </span>
+                        </div>:<div>Listoco</div>
+                    }
+                />
+
             </form>
         );
     }

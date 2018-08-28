@@ -1,3 +1,26 @@
+packages <- c("plumber","Sim.DiffProc","base64enc","base64")
+if (length(setdiff(packages, rownames(installed.packages()))) > 0) {
+  install.packages(setdiff(packages, rownames(installed.packages())),repos = "http://cran.us.r-project.org")  
+}
+
 library(plumber)
 r <- plumb("api.R")  # Where 'plumber.R' is the location of the file shown above
+cat(
+"
+MMMMMMMMMMMMMMmmdmmNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMNy+-.......-/smMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMd/..-oydmmmdho:..:hMMMMMMMMMNhyyhNMMMMNhyyhmMMMMMMMMMMMMMMNhNMMMMMMMMMMMM
+MMMMMMo../dMNs/:/+dMMMmo../NMMMMMm:/yddy+mMN::yddh+dMM+-/--dMMMMMm mMMMMMMMMMMMM
+MMMMM+..yMMM:.+ds..NMMMMd..:NMMMM.+MMMMMMMM-/MMMMMMMMN..h/.dMMMMMm mMMMMMMMMMMMM
+MMMMh..sMMMMs..o:.+MMMMMMh..sMMMM`sMMMdo/oM.oMMMmo/+Md-- -ms-MMMMm mMMMMMMMMMMMM
+MMMMo..NMMMd/.-../Nm::mMMM-.:MMMMh.yNMMM//Mh.sNMMM+:M- dm/  :NMMMs`NMMMMMMMMMMMM
+MMMMo..mMMm..hMm/..:..NMMM../MMMMMNy++++smMMNyo+++smMNs+/+sh+sm++omMMMMMMMMMMMMM
+MMMMm..+MMm..sMMN+.../MMMs..yMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMy..+NMm/..-..+y/-NMs..oMMMMMMMMMMMMMMMMNMMMMMMMNMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMd-..smMMNmNMMMMNy-..yMMMMMMMMdMdhMddhMsMhNmmsMyMddhMyhNdhMNmMMMMMMMMMMMMMM
+MMMMMMMMy:..-+oyyys+:..-sNMMMMMMMMMMMNyNddhMhMhdmNyMhMdddMhmmNyNMMMMMMMMMMMMMMMM
+MMMMMMMMMMmyo/:-.--/+ymMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+")
+cat("Bienvenid@ al Sistema de Procesamiento de GG&J-Solutions\n")
 r$run(port=8000)
