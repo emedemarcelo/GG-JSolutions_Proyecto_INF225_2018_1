@@ -1,6 +1,8 @@
 # "Valoración de Opciones sobre Acciones"
 ## A INF225 course project
 
+<img src="ggj.jpeg" alt="drawing" width="400"/>
+
 Made by "GG&J -solutions-":
 - José L. Gallardo P. (201430003-4)
 - Marcelo González H. (201430028-K)

@@ -50,20 +50,28 @@ electron .
 ![PantallaPrincipal](documentation_img/1.png)
 *Figura 1: Pantalla principal de la aplicación*
 
-![CalculOnline](documentation_img/2.png)*Figura 2: Solicitud de calculo de opciones de forma online*
+![CalculOnline](documentation_img/2.png)
+*Figura 2: Solicitud de calculo de opciones de forma online*
 
-![CalculOnlineReady](documentation_img/3.png)*Figura 3: Solicitud de calculo de opciones de forma online lista*
+![CalculOnlineReady](documentation_img/3.png)
+*Figura 3: Solicitud de calculo de opciones de forma online lista*
 
-![ResultsOnline](documentation_img/4.png)*Figura 4: Acción analizada de forma online en la vista de resultados*
+![ResultsOnline](documentation_img/4.png)
+*Figura 4: Acción analizada de forma online en la vista de resultados*
 
-![GraphsOnline](documentation_img/5.png)*Figura 5: Gráfico acción vs tiempo normalizado*
+![GraphsOnline](documentation_img/5.png)
+*Figura 5: Gráfico acción vs tiempo normalizado*
 
-![CalculLocal](documentation_img/2b.png)*Figura 6: Solicitud de calculo de opciones de forma local*
+![CalculLocal](documentation_img/2b.png)
+*Figura 6: Solicitud de calculo de opciones de forma local*
 
-![CalculLocalReady](documentation_img/3b.png)*Figura 7: Solicitud de calculo de opciones de forma local lista*
+![CalculLocalReady](documentation_img/3b.png)
+*Figura 7: Solicitud de calculo de opciones de forma local lista*
 
-![ResultsLocalOnline](documentation_img/4b.png)*Figura 8: Acción analizada de forma local en la vista de resultados*
+![ResultsLocalOnline](documentation_img/4b.png)
+*Figura 8: Acción analizada de forma local en la vista de resultados*
 
-![GraphsLocalOnline](documentation_img/5b.png)*Figura 9: Gráfico acción vs tiempo normalizado*
+![GraphsLocalOnline](documentation_img/5b.png)
+*Figura 9: Gráfico acción vs tiempo normalizado*
 
 El archivo de prueba está en la carpeta RAPI, llamado NFLX.csv.
