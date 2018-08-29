@@ -102,9 +102,7 @@ class Graphs extends React.Component {
                                 textColor="primary"
                                 fullWidth
                             >
-                                <Tab label="Item One" />
-                                <Tab label="Item Two" />
-                                <Tab label="Item Three" />
+                                <Tab label="Acción vs tiempo normalizado" />
                             </Tabs>
                         </AppBar>
                         <SwipeableViews
@@ -114,7 +112,6 @@ class Graphs extends React.Component {
                         >
                             <TabContainer dir={theme.direction}><img src={'data:image/png;base64,' + this.props.location.state.opciones} /></TabContainer>
                             <TabContainer dir={theme.direction}>Item Two</TabContainer>
-                            <TabContainer dir={theme.direction}>Item Three</TabContainer>
                         </SwipeableViews>
                     </div>
                 </Slide>

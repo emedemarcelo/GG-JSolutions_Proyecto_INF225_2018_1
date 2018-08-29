@@ -5,8 +5,8 @@ library(Sim.DiffProc)
 library(base64enc)
 
 graphPrecios = function(X){
-  plot(X, plot.type="single")
-  #lines(as.vector(time(X)),rowMeans(X),col="red")
+  plot(X, plot.type="single", xlim= c(0,1))
+  lines(as.vector(time(X)),rowMeans(X),col="red")
 }
 
 #* Echo back the input
@@ -36,9 +36,8 @@ function(n_trayectorias, riskRate, values){
   days <- length(na.omit(data$adjClose))
   mu <- mean(values)
   sig <- sd(values)
-  x0 <- values[0]
-  print(mu)
-  X <- GBM(M=trayectories, x0=values[1], t0=0, T=1, Dt=1, theta = mu/days, sigma = sig/days)
+  print(values[1])
+  X <- GBM(M=trayectories, x0 = values[1], T=1, t0 = 0, theta = mu/days, sigma = sig/days)
 
   result <- graphPrecios(X)
   result

@@ -54,21 +54,18 @@ router.get('/yf', function (req, res) {
     //console.log(req.query);
 
     let pre_accion = "^",
-        accion = "^" + req.query.accion,
+        accion = req.query.accion,
         mercado = req.query.mercado,
         fecha_inicio = req.query.fecha_inicio,
         fecha_termino = req.query.fecha_termino,
         trayectorias = req.query.trayectorias,
         tasa_riesgo = req.query.tasa_riesgo;
 
-    let data_to_process;
-
     yahooFinance.historical({
         symbol: accion,
         from: fecha_inicio,
         to: fecha_termino
     }, (err, quotes) => {
-
         axios({
             method: 'post',
             url: 'http://localhost:8000/analysis',
@@ -80,38 +77,10 @@ router.get('/yf', function (req, res) {
             }
         },).then((response) => {
             let data = Buffer.from(response.data, 'binary').toString('base64');
-            console.log(data);
             res.send(data);
         }).catch(function (error) {
             console.error('ERROR! ' + error.message)
         })
-
-        /*
-         axios.post('http://localhost:8000/analysis', {
-            n_trayectorias: trayectorias,
-            riskRate: tasa_riesgo,
-            values: JSON.stringify(quotes),
-        }).then(response => {
-            let data = Buffer.from(response.data, 'binary').toString('base64');
-            console.log(data);
-            res.send(data);
-            //res.send('data:image/jpeg;base64,'+ btoa(data));
-        }).catch(function (error) {
-            console.error('ERROR! ' + error.message)
-        })*/
-
-        /*
-        axios.get('http://localhost:8000/littlepng', {
-            responseType: 'arraybuffer'
-          }).then((response) => {
-            let data = Buffer.from(response.data, 'binary').toString('base64');
-            console.log(data);
-            res.send(data);
-        }).catch(function (error) {
-            console.error('ERROR! ' + error.message)
-        })
-        */
-
     });
 });
 
