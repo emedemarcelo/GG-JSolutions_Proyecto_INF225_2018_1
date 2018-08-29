@@ -4,6 +4,7 @@ if (length(setdiff(packages, rownames(installed.packages()))) > 0) {
 }
 
 library(plumber)
+options(encoding = "UTF-8")
 r <- plumb("api.R")  # Where 'plumber.R' is the location of the file shown above
 cat(
 "

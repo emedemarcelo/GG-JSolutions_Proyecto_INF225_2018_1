@@ -41,6 +41,7 @@ const styles = theme => ({
     display: 'flex',
   },
   appBar: {
+    position: 'fixed',
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
@@ -234,8 +235,6 @@ class App extends React.Component {
             </div>
             <Divider />
             <List>{MailFolderListItems}</List>
-            <Divider />
-            <List>{otherMailFolderListItems}</List>
           </Drawer>
           <main className={classes.content}>
             <div className={classes.toolbar} />

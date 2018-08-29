@@ -84,10 +84,10 @@ class Graphs extends React.Component {
                     <div>
                         <Paper className={classes.rootPaper} elevation={1}>
                             <Typography variant="headline" component="h3">
-                                Gráficos de la acción
+                                Gráficos de la acción {this.props.location.state.nombreBolsa}
                             </Typography>
                             <Typography component="p">
-                                desde XXYYY a ZZZZ.
+                                desde {this.props.location.state.fecha_init} a {this.props.location.state.fecha_final}.
                             </Typography>
                         </Paper>
                     </div>
@@ -110,7 +110,7 @@ class Graphs extends React.Component {
                             index={this.state.value}
                             onChangeIndex={this.handleChangeIndex}
                         >
-                            <TabContainer dir={theme.direction}><img src={'data:image/png;base64,' + this.props.location.state.opciones} /></TabContainer>
+                            <TabContainer dir={theme.direction}><div><center>Cada trayectoria se muestra en negro mientras que el promedio de éstas se muestra en rojo. <img src={'data:image/png;base64,' + this.props.location.state.opciones} /></center></div></TabContainer>
                             <TabContainer dir={theme.direction}>Item Two</TabContainer>
                         </SwipeableViews>
                     </div>

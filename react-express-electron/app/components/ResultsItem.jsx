@@ -67,7 +67,12 @@ class ResultsItem extends React.Component {
   displayGraph = (e) => {
     this.props.history.push({
       pathname: "/graph",
-      state: { opciones : this.props.opciones}
+      state: {
+        opciones: this.props.opciones, 
+        fecha_init: this.props.fechaInicio,
+        fecha_final: this.props.fechaTermino,
+        nombreBolsa: this.props.accion
+      }
     });
   }
 

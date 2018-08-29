@@ -10,10 +10,8 @@ import HomeIcon from '@material-ui/icons/Home';
 import StarIcon from '@material-ui/icons/Star';
 import SendIcon from '@material-ui/icons/Send';
 import MailIcon from '@material-ui/icons/Mail';
-import Badge from "@material-ui/core/Badge";
-import { withStyles } from "@material-ui/core/styles";
-import Divider from '@material-ui/core/Divider';
-
+import InputIcon from '@material-ui/icons/Input';
+import InsChartOutIcon from '@material-ui/icons/InsertChartOutlined';
 
 import {
   BrowserRouter as Router,
@@ -45,13 +43,13 @@ export const MailFolderListItems = (
   </ListItem>
   <ListItem component={Link} to="/analysis" button>
     <ListItemIcon>
-      <StarIcon />
+      <InputIcon />
     </ListItemIcon>
     <ListItemText primary="Ingresar Datos" />
   </ListItem>
   <ListItem component={Link} to="/results" button>
     <ListItemIcon>
-      <SendIcon />
+      <InsChartOutIcon />
     </ListItemIcon>
     <ListItemText primary="Resultados" />
   </ListItem>

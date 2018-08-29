@@ -5,7 +5,7 @@ library(Sim.DiffProc)
 library(base64enc)
 
 graphPrecios = function(X){
-  plot(X, plot.type="single", xlim= c(0,1))
+  plot(X, plot.type="single", xlim= c(0,1), xlab="Tiempo normalizado", ylab= "Valor de acción", main="Valor de acción vs tiempo")
   lines(as.vector(time(X)),rowMeans(X),col="red")
 }
 
@@ -30,15 +30,12 @@ function(){
 function(n_trayectorias, riskRate, values){
   data = fromJSON(txt=values)
   values = na.omit(data$adjClose)
-  #print(na.omit(data$adjClose))
   trayectories = strtoi(n_trayectorias, base = 0L)
   risk_rate <- riskRate
   days <- length(na.omit(data$adjClose))
   mu <- mean(values)
   sig <- sd(values)
-  print(values[1])
   X <- GBM(M=trayectories, x0 = values[1], T=1, t0 = 0, theta = mu/days, sigma = sig/days)
-
   result <- graphPrecios(X)
   result
 }

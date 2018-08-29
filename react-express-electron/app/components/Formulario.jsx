@@ -8,9 +8,8 @@ import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import Snackbar from '@material-ui/core/Snackbar';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { Link } from 'react-router-dom'
 
 const styles = theme => ({
     container: {
@@ -196,9 +195,8 @@ class Formulario extends React.Component {
                     margin="normal"
                 />
                 <Button size="small" color="secondary" variant="outlined" onClick={() => {
-                    //this.props.add(this.state, d.toString());
                     this.handleClick(this.state);
-                }}>Predecir opciones con Redux</Button>
+                }}>Predecir opciones</Button>
                 <Snackbar
                     anchorOrigin={{
                         vertical: 'bottom',
@@ -213,7 +211,7 @@ class Formulario extends React.Component {
                         (this.state.charged == false)? <div>
                         <CircularProgress className={classes.progress} color="secondary" size={30}/>
                         <span id="message-id">Calculando opciones... </span>
-                        </div>:<div>Listoco</div>
+                        </div>:<div>Listo! Puede observar los resultados <Link to="/results" style={{ textDecoration: 'none', color:'yellow' }}>acá</Link></div>
                     }
                 />
 

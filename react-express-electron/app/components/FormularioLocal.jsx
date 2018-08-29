@@ -1,18 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import Snackbar from '@material-ui/core/Snackbar';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
-//import DataParser from './DataParser.jsx';
 import ReactFileReader from 'react-file-reader';
 import Papa from 'papaparse';
-
+import axios from 'axios';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { Link } from 'react-router-dom'
 
 const styles = theme => ({
     container: {
@@ -31,6 +29,9 @@ const styles = theme => ({
         width: theme.spacing.unit * 4,
         height: theme.spacing.unit * 4,
     },
+    progress: {
+        margin: theme.spacing.unit * 2,
+      },
 });
 
 // In 'state', we put the "value" field of each variable so it
@@ -48,7 +49,8 @@ class FormularioLocal extends React.Component {
         from_form: true,
         timestamp: '',
         fileJSON: [],
-        charged: true
+        open: false,
+        charged: true,
     };
 
     handleChange = name => event => {
@@ -57,42 +59,57 @@ class FormularioLocal extends React.Component {
         });
     };
 
+    handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+        this.setState({ open: false , charged: true});
+      };
+
+
     handleFiles = (files) => {
         
         var reader = new FileReader();
         reader.onload = function(e) {
             let data;
             let self = this;
-            // Use reader.result
-            //alert(reader.result)
-            //LO QUE SALE DE DATA PARSER HAY QUE GUARDARLO EN UN ESTADO
-            //data = DataParser.loadDataFromFile(reader.result);
-            //console.log(data);
-
         }
 
         reader.readAsText(files[0]);
-        let aux = files[0];
-        let CSV_data = [];
+
         Papa.parse(files[0], {
+            header: true,
+            delimiter: ",",
+            trimHeaders: true,
+            dynamicTyping: true,
+            skipEmptyLines: true,
+            beforeFirstChunk: function(chunk) {
+                var rows = chunk.split( /\r\n|\r|\n/ );
+                var headings = rows[0].toLowerCase();
+                var headers = headings.split(",");
+                headers[5] = "adjClose"
+                headings = headers.join(",");
+                rows[0] = headings;
+                console.log(rows[0]);
+                return rows.join("\r\n");
+            },
+
             complete: (results) =>{
                 this.setState({fileJSON: results.data})
             }
         });
 
-        //console.log(aux.path);
     }
 
-    handleClick = () => {
-        console.log("picopoto");
-        this.callLocal(this.state);
-
+    handleClick = (state) => {
+        this.setState({ open: true, charged: false});
+        this.callLocal(state);
     }
 
     callLocal = (state) => {
         axios.get('http://localhost:5000/api/local', {
-            params: state,
-            'timeout': 10000
+            params: state
+            //'timeout': 10000
         }).then(res => {
             let data = res.data;
             let d = new Date();
@@ -101,6 +118,9 @@ class FormularioLocal extends React.Component {
             this.props.add({ ...this.state, options: data }, d.toString());
             console.log("THIS IS DSA LOCAL OPTIONS");
             this.setState({charged: true})
+            setTimeout(() => {
+                this.handleClose();
+            },8000)
         }).catch(function (error) {
             console.log(error)
         })
@@ -109,7 +129,7 @@ class FormularioLocal extends React.Component {
     render() {
         const { classes } = this.props;
         let d = new Date();
-        console.log(this.state.fileJSON);
+        console.log(this.state);
 
         return (<div>
 
@@ -184,9 +204,26 @@ class FormularioLocal extends React.Component {
                 />
 
                 <Button size="small" color="secondary" variant="outlined" onClick={() => {
-                    this.props.add(this.state,d.toString());
-                    this.handleClick;
-                }}>Predecir opciones con Redux</Button>
+                    this.handleClick(this.state);
+                }}>Predecir opciones</Button>
+                <Snackbar
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'left',
+                    }}
+                    open={this.state.open}
+                    onClose={this.handleClose}
+                    ContentProps={{
+                        'aria-describedby': 'message-id',
+                    }}
+                    message={
+                        (this.state.charged == false)? <div>
+                        <CircularProgress className={classes.progress} color="secondary" size={30}/>
+                        <span id="message-id">Calculando opciones... </span>
+                        </div>:<div>Listo! Puede observar los resultados <Link to="/results" style={{ textDecoration: 'none', color:'yellow' }}>acá</Link></div>
+                    }
+                />
+
             </form>
             </div>
         );

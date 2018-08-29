@@ -56,7 +56,11 @@ router.get('/local', function (req, res) {
         fecha_termino = req.query.fecha_termino,
         trayectorias = req.query.trayectorias,
         tasa_riesgo = req.query.tasa_riesgo;
+        data_file = req.query.fileJSON;
 
+        data_file.forEach( (element, index) => {
+            data_file[index] = JSON.parse(element);
+        });
         axios({
             method: 'post',
             url: 'http://localhost:8000/analysis',
@@ -91,6 +95,7 @@ router.get('/yf', function (req, res) {
         from: fecha_inicio,
         to: fecha_termino
     }, (err, quotes) => {
+        console.log(quotes);
         axios({
             method: 'post',
             url: 'http://localhost:8000/analysis',
