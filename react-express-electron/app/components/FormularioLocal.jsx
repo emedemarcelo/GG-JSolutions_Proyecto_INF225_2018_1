@@ -47,7 +47,8 @@ class FormularioLocal extends React.Component {
         options: [],
         from_form: true,
         timestamp: '',
-        fileJSON: []
+        fileJSON: [],
+        charged: true
     };
 
     handleChange = name => event => {
@@ -84,12 +85,12 @@ class FormularioLocal extends React.Component {
 
     handleClick = () => {
         console.log("picopoto");
-        this.callYF(this.state);
+        this.callLocal(this.state);
 
     }
 
-    callYF = (state) => {
-        axios.get('http://localhost:5000/api/yf', {
+    callLocal = (state) => {
+        axios.get('http://localhost:5000/api/local', {
             params: state,
             'timeout': 10000
         }).then(res => {
@@ -100,9 +101,6 @@ class FormularioLocal extends React.Component {
             this.props.add({ ...this.state, options: data }, d.toString());
             console.log("THIS IS DSA LOCAL OPTIONS");
             this.setState({charged: true})
-            setTimeout(() => {
-                this.handleClose();
-            },3000)
         }).catch(function (error) {
             console.log(error)
         })

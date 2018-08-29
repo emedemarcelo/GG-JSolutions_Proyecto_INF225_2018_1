@@ -47,7 +47,32 @@ router.get('/analysis', (req, res) => {
     })
 });
 
+router.get('/local', function (req, res) {
 
+    let pre_accion = "^",
+        accion = req.query.accion,
+        mercado = req.query.mercado,
+        fecha_inicio = req.query.fecha_inicio,
+        fecha_termino = req.query.fecha_termino,
+        trayectorias = req.query.trayectorias,
+        tasa_riesgo = req.query.tasa_riesgo;
+
+        axios({
+            method: 'post',
+            url: 'http://localhost:8000/analysis',
+            responseType: 'arraybuffer',
+            data: {
+                n_trayectorias: trayectorias,
+                riskRate: tasa_riesgo,
+                values: JSON.stringify(req.query.fileJSON),
+            }
+        },).then((response) => {
+            let data = Buffer.from(response.data, 'binary').toString('base64');
+            res.send(data);
+        }).catch(function (error) {
+            console.error('ERROR! ' + error.message)
+        })
+})
 // 'api/yf'
 router.get('/yf', function (req, res) {
     //console.log("Received data from requester: ");
