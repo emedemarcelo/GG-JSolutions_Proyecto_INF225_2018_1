@@ -82,10 +82,37 @@ class FormularioLocal extends React.Component {
         //console.log(aux.path);
     }
 
+    handleClick = () => {
+        console.log("picopoto");
+        this.callYF(this.state);
+
+    }
+
+    callYF = (state) => {
+        axios.get('http://localhost:5000/api/yf', {
+            params: state,
+            'timeout': 10000
+        }).then(res => {
+            let data = res.data;
+            let d = new Date();
+            //this.state.options.push(data); aquí hay problemas
+            //this.setState({...this.state, options: data});
+            this.props.add({ ...this.state, options: data }, d.toString());
+            console.log("THIS IS DSA LOCAL OPTIONS");
+            this.setState({charged: true})
+            setTimeout(() => {
+                this.handleClose();
+            },3000)
+        }).catch(function (error) {
+            console.log(error)
+        })
+    };
+
     render() {
         const { classes } = this.props;
         let d = new Date();
         console.log(this.state.fileJSON);
+
         return (<div>
 
             <ReactFileReader handleFiles={this.handleFiles} fileTypes={'.csv'}>
