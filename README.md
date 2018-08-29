@@ -6,5 +6,7 @@ Made by "GG&J -solutions-":
 - Marcelo González H. (201430028-K)
 - Esteban Jara C.     (201330002-2)
 
+Puede acceder al código fuente en la carpeta **react-express-electron**, en la branch *withR_Branch*
+
 ----
 Project powered by Electron.js

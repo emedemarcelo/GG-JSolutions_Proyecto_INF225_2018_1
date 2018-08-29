@@ -1,14 +1,16 @@
-# react-express-electron
+# "Valoración de Opciones sobre Acciones" - Source Code
 
-Integración de estos programas.
+Código fuente del proyecto "Valoración de Opciones sobre Acciones".
 
 Instalación de dependencias:
-    -npm install
+- npm install
 
-Compilación de front:
-    -npm run build
+Instalación de dependencias 
+
+Compilación de front-end:
+- npm run build
 
 Ejecución dev:
-    -Windows: .\node_modules\.bin\electron .
-    -bash: electron .
+- Windows: .\node_modules\.bin\electron .
+- bash: electron .
 
